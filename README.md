@@ -9,6 +9,13 @@ Add the following to your packages.yml file
     revision: "0.0.1-beta"
 ```
 
+## Usage
+the project namespace for this package is `dbt_monitorialio_monitors` and can be used as follows:
+
+```
+{{ dbt_monitorialio_monitors.monitor_name() }}
+```
+
 ## Contributing
 
 ## Getting Started
