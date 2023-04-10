@@ -1,0 +1,11 @@
+version: 2
+
+macros:
+  - name: long_running_queries
+    description: "Returns a list of queries that have been running for more than the specified timeframe"
+    docs:
+      show: true
+    arguments:
+      - name: minutes
+        type: integer
+        description: "The number of minutes to look back for query execution (default is 5)"

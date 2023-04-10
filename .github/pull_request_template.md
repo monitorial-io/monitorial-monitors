@@ -15,6 +15,8 @@ resolves #
 
 ### Checklist
 
-- [ ] I have run this code in development and it appears to resolve the stated issue
-- [ ] I have run this code in development and it does not create any new issues
+- [ ] I have verified that these changes work locally
+- [ ] I have updated the README.md (if applicable)
+- [ ] I have updated the CHANGELOG.md (if applicable)
+- [ ] I have updated the macro yml definitions (if applicable)
 - [ ] This PR includes an explanation of what it does

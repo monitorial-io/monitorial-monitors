@@ -6,7 +6,7 @@ This repository is an open source project that aims to provide a scripts which c
 Add the following to your packages.yml file
 ```
   - git: https://github.com/monitorial-io/monitorial-monitors.git
-    revision: "0.0.1-beta"
+    revision: "0.0.3-beta"
 ```
 
 ## Usage
@@ -15,8 +15,20 @@ the project namespace for this package is `dbt_monitorialio_monitors` and can be
 ```
 {{ dbt_monitorialio_monitors.monitor_name() }}
 ```
+for example
+```
+{{ dbt_monitorialio_monitors.failed_logins(hours=1) }}
+```
 
 ## Contributing
+to contribute to this project please fork the repository and submit a pull request.
 
-## Getting Started
+## Available Macros
+
+### Admin
+* Failed Logins
+* Orphaned roles
+
+### Performance
+* Long Running Queries
 

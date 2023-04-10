@@ -1,31 +1,39 @@
 {% macro orphan_roles(exception_list) -%}
 
-with exception_list as (
-  select role_names.value::string AS role_exception from table(flatten(input => parse_json('{{ exception_list }}'))) role_names
+WITH exception_list AS (
+
+  SELECT role_names.value::string AS role_exception
+  FROM TABLE(flatten(input => parse_json('{{ exception_list }}'))) role_names
+
 ),
-active_roles as (
-    select 
-        name
-    from snowflake.account_usage.roles
-    where snowflake.account_usage.roles.name != ALL (SELECT exception_list.role_exception
-                              FROM exception_list) and
-        deleted_on is null
+
+active_roles AS (
+
+    SELECT name
+    FROM snowflake.account_usage.roles
+    WHERE snowflake.account_usage.roles.name != ALL (
+        SELECT exception_list.role_exception
+        FROM exception_list) AND
+        deleted_on IS NULL
+
 ),
-role_grants as (
-    select 
-        distinct  name
-    from     
+
+role_grants AS (
+
+    SELECT DISTINCT NAME
+    FROM
         snowflake.account_usage.grants_to_roles
-    where 
-        granted_on = 'ROLE' and 
-        granted_to = 'ROLE' and 
-        deleted_on is null and 
+    WHERE
+        granted_on = 'ROLE' AND
+        granted_to = 'ROLE' AND
+        deleted_on IS NULL AND
         privilege = 'USAGE'
 )
-select 
-    active_roles.name
-from
-    active_roles left outer join role_grants on active_roles.name = role_grants.name
-where role_grants.name is null
+
+SELECT active_roles.name
+FROM
+    active_roles
+    LEFT OUTER JOIN role_grants ON active_roles.name = role_grants.name
+WHERE role_grants.name IS NULL
 
 {%- endmacro %}

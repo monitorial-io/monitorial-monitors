@@ -1,6 +1,6 @@
 {% macro failed_logins(hours) -%}
 
-    select 
+SELECT
     event_timestamp,
     event_type,
     client_ip,
@@ -10,10 +10,10 @@
     reported_client_type,
     first_authentication_factor,
     second_authentication_factor
-from snowflake.account_usage.login_history 
-where 
-    (is_success = 'NO' or error_message = 'INCOMING_IP_BLOCKED') and 
-    event_timestamp > dateadd(hour, -{{ hours }}, current_timestamp)
-order by event_timestamp desc
+FROM snowflake.account_usage.login_history
+WHERE
+    (is_success = 'NO' OR error_message = 'INCOMING_IP_BLOCKED') AND
+    event_timestamp > DATEADD(HOUR, -{{ hours }}, CURRENT_TIMESTAMP)
+ORDER BY event_timestamp DESC
 
 {%- endmacro %}
