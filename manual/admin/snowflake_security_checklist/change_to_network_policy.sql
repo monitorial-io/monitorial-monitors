@@ -1,18 +1,18 @@
-select
+SELECT
     end_time,
     query_type,
     query_text,
     user_name,
     role_name
-from
+FROM
     snowflake.account_usage.query_history
-where
+WHERE
     execution_status = 'SUCCESS'
-    and query_type in (
+    AND query_type IN (
         'CREATE_NETWORK_POLICY', 'ALTER_NETWORK_POLICY', 'DROP_NETWORK_POLICY'
     )
-    or (
-        query_text ilike '% set network_policy%'
-        or query_text ilike '% unset network_policy%'
+    OR (
+        query_text ILIKE '% set network_policy%'
+        OR query_text ILIKE '% unset network_policy%'
     )
-order by end_time desc;
+ORDER BY end_time DESC

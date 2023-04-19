@@ -1,16 +1,16 @@
-select distinct 
-    client_ip as blocked_source_ip,
-    count (client_ip), 
+SELECT DISTINCT
+    client_ip AS blocked_source_ip,
+    COUNT(client_ip),
     user_name,
-    reported_client_type as driver,
-    first_authentication_factor as authn_type
-from 
+    reported_client_type AS driver,
+    first_authentication_factor AS authn_type
+FROM
     snowflake.account_usage.login_history
-where error_message = 'INCOMING_IP_BLOCKED'
-group by 
-    user_name, 
-    client_ip, 
-    reported_client_type, 
+WHERE error_message = 'INCOMING_IP_BLOCKED'
+GROUP BY
+    user_name,
+    client_ip,
+    reported_client_type,
     first_authentication_factor
-order by 
-    count (client_ip) desc
+ORDER BY
+    COUNT(client_ip) DESC

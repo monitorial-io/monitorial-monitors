@@ -1,9 +1,11 @@
-select
+SELECT
     user_name,
     role_name,
-    query_text
-from snowflake.account_usage.query_history where
+    query_text,
+    end_time
+FROM snowflake.account_usage.query_history
+WHERE
     execution_status = 'SUCCESS'
-    and query_type = 'GRANT'
-    and query_text ilike '%grant%accountadmin%to%'
-order by end_time desc;
+    AND query_type = 'GRANT'
+    AND query_text ILIKE '%grant%accountadmin%to%'
+ORDER BY end_time DESC;
