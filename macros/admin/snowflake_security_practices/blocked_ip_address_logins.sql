@@ -1,6 +1,6 @@
-SELECT DISTINCT
+SELECT
     client_ip AS blocked_source_ip,
-    COUNT(client_ip),
+    COUNT(client_ip) AS count_of_client_ip,
     user_name,
     reported_client_type AS driver,
     first_authentication_factor AS authn_type
