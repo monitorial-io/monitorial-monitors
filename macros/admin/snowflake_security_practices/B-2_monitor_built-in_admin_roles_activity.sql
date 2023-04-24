@@ -5,11 +5,11 @@ select
     query_text,
     user_name,
     role_name
-from snowflake.account_usage.query_history where
-    execution_status = 'SUCCESS'
-    and role_name in ('ACCOUNTADMIN', 'SECURITYADMIN', 'USERADMIN', 'SYSADMIN')
-    and query_type in (
-        {% for query_type in query_types %}
+FROM snowflake.account_usage.query_history
+WHERE execution_status = 'SUCCESS'
+    AND role_name IN ('ACCOUNTADMIN', 'SECURITYADMIN', 'USERADMIN', 'SYSADMIN')
+    AND query_type IN (
+        {%- for query_type in query_types -%}
         '{{query_type}}'
         {% if not loop.last %},{% endif %}
         {% endfor %}

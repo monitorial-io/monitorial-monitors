@@ -4,7 +4,8 @@ select
     role_name,
     query_text,
     end_time
-from snowflake.account_usage.query_history where
+FROM snowflake.account_usage.query_history
+WHERE
     execution_status = 'SUCCESS'
     and query_type = 'GRANT'
     and query_text ilike '%to%public%'
