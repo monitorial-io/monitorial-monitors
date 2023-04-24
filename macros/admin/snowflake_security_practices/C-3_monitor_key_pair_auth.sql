@@ -1,4 +1,4 @@
-{% macro by_key_pair() -%}
+{% macro by_key_pair(time_filter=1440) -%}
 select
     event_timestamp,
     user_name,
@@ -12,7 +12,7 @@ where first_authentication_factor = 'RSA_KEYPAIR'
 order by event_timestamp desc
 {%- endmacro %}
 
-{% macro key_pair_and_password() -%}
+{% macro key_pair_and_password(time_filter=1440) -%}
 select * 
 from snowflake.account_usage.users
 where
