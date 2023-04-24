@@ -1,3 +1,4 @@
+{% macro not_using_sso() -%}
 with sso as (
     select
         user_name as user_has_used_sso,
@@ -17,9 +18,4 @@ select
     reported_client_type
         as reported_client_version
 from snowflake.account_usage.login_history as l
-inner join sso
-    on sso.user_has_used_sso = l.user_name
-where
-    first_authentication_factor not in ('SAML2_ASSERTION', 'OAUTH_ACCESS_TOKEN')
-    and l.event_timestamp > firstsso
-order by l.event_timestamp desc;
+{%- endmacro %}

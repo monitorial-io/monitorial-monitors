@@ -1,3 +1,4 @@
+{% macro changes_to_network_policies) -%}
 select
     end_time,
     query_type,
@@ -15,4 +16,5 @@ where
         query_text ilike '% set network_policy%'
         or query_text ilike '% unset network_policy%'
     )
-order by end_time desc;
+order by end_time desc
+{%- endmacro %}

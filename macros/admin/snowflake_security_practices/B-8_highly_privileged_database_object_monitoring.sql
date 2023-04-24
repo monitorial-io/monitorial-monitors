@@ -1,3 +1,4 @@
+{% macro high_priviledge_account(minutes,number_requests) -%}
 select
     user_name,
     role_name,
@@ -14,4 +15,5 @@ from snowflake.account_usage.query_history where
         or query_text ilike '%monitor usage%'
         or query_text ilike '%ownership%'
     )
-order by end_time desc;
+order by end_time desc
+{%- endmacro %}

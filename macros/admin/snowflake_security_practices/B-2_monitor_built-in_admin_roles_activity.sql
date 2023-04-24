@@ -1,5 +1,4 @@
 {% macro admin_roles_query_checks(hours, query_types = ["SELECT"]) -%}
-
 select
     end_time,
     query_type,
@@ -17,5 +16,4 @@ from snowflake.account_usage.query_history where
         )
     and end_time >= dateadd(hour, -{{ hours }}, current_time)
 order by end_time desc
-
 {%- endmacro %}

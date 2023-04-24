@@ -1,3 +1,4 @@
+{% macro altered_client_sessions) -%}
 select
     end_time,
     query_type,
@@ -6,6 +7,6 @@ select
     role_name
 from snowflake.account_usage.query_history where
     execution_status = 'SUCCESS'
-    and query_type = 'ALTER_USER'
-    and query_text ilike '%alter user%set disabled = false%'
-order by end_time desc;
+    and query_type = 'ALTER_SESSION' and query_text ilike '%client_session%'
+order by end_time desc
+{%- endmacro %}

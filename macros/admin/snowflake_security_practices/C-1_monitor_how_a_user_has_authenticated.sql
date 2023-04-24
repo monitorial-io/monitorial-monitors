@@ -1,3 +1,4 @@
+{% macro authentication_by_user() -%}
 select
     user_name,
     first_authentication_factor,
@@ -8,4 +9,5 @@ where is_success = 'YES'
 group by
     user_name, first_authentication_factor,
     second_authentication_factor
-order by user_name, count(*) desc;
+order by user_name, count(*) desc
+{%- endmacro %}
