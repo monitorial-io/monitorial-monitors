@@ -1,10 +1,12 @@
-select
+SELECT
     end_time,
     query_type,
     query_text,
     user_name,
     role_name
-from snowflake.account_usage.query_history where
+FROM snowflake.account_usage.query_history
+WHERE
     execution_status = 'SUCCESS'
-    and query_type = 'ALTER_SESSION' and query_text ilike '%client_session%'
-order by end_time desc;
+    AND query_type = 'ALTER_SESSION'
+    AND query_text ilike '%client_session%'
+ORDER BY end_time DESC;

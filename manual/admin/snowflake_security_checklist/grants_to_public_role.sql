@@ -1,10 +1,11 @@
-select
+SELECT
     user_name,
     role_name,
     query_text,
     end_time
-from snowflake.account_usage.query_history where
+FROM snowflake.account_usage.query_history
+WHERE
     execution_status = 'SUCCESS'
-    and query_type = 'GRANT'
-    and query_text ilike '%to%public%'
-order by end_time desc;
+    AND query_type = 'GRANT'
+    AND query_text ILIKE '%to%public%'
+ORDER BY end_time DESC;
