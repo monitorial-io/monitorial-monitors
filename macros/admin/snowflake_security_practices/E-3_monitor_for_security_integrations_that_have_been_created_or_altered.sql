@@ -1,4 +1,4 @@
-{% macro periodic_rekey_changes(time_filter=1440) -%}
+{% macro security_integration_changes(time_filter=1440) -%}
 select
     end_time,
     query_type,
