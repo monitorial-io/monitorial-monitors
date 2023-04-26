@@ -1,4 +1,4 @@
-{% macro failed_login_attempts(number_of_failures = 3, seconds_between_failures = 5) -%}
+{% macro failed_login_attempts_concurrent(number_of_failures = 3, seconds_between_failures = 5, time_filter=1440) -%}
 select user_name,
 count(*) as failed_logins,
 avg(seconds_between_login_attempts) as
@@ -18,7 +18,7 @@ adjust as needed
 order by avg(seconds_between_login_attempts) desc
 {%- endmacro %}
 
-{% macro failed_login_attempts() -%}
+{% macro failed_login_attempts(time_filter=1440) -%}
 select distinct
     user_name,
     first_authentication_factor,
