@@ -9,6 +9,6 @@ where
     execution_status = 'SUCCESS'
     and query_type = 'GRANT'
     and query_text ilike '%grant%accountadmin%to%'
-    and end_time >= dateadd(minutes, -{{ time_filter }}, current_time)
+    and end_time >= dateadd(minutes, -{{ time_filter }}, current_timestamp)
 order by end_time desc
 {%- endmacro %}

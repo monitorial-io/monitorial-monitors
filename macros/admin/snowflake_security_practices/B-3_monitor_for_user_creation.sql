@@ -8,7 +8,7 @@ select
 from snowflake.account_usage.query_history where
     execution_status = 'SUCCESS'
     and query_type = 'CREATE_USER' and query_text ilike '%create%user%'
-    and end_time >= dateadd(minutes, -{{ time_filter }}, current_time)
+    and end_time >= dateadd(minutes, -{{ time_filter }}, current_timestamp)
 order by end_time desc
 {%- endmacro %}
 
@@ -28,6 +28,6 @@ from snowflake.account_usage.query_history where
         {% if not loop.last %},{% endif %}
     {% endfor %}
     )
-    and end_time >= dateadd(minutes, -{{ time_filter }}, current_time)
+    and end_time >= dateadd(minutes, -{{ time_filter }}, current_timestamp)
 order by end_time desc
 {%- endmacro %}

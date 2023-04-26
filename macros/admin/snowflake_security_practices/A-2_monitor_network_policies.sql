@@ -17,6 +17,6 @@ where
         query_text ILIKE '% set network_policy%'
         or query_text ILIKE '% unset network_policy%'
     )
-    and end_time >= dateadd(minutes, -{{ time_filter }}, current_time)
+    and end_time >= dateadd(minutes, -{{ time_filter }}, current_timestamp)
 order by end_time desc
 {%- endmacro %}

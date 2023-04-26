@@ -33,7 +33,7 @@ select distinct
 from 
     snowflake.account_usage.login_history
 where error_message = 'INCOMING_IP_BLOCKED'
-and event_timestamp >= dateadd(minutes, -{{ time_filter }}, current_time)
+and event_timestamp >= dateadd(minutes, -{{ time_filter }}, current_timestamp)
 group by 
     user_name, 
     client_ip, 

@@ -8,8 +8,8 @@ timediff(seconds, event_timestamp, lead(event_timestamp)
 over(partition by user_name order by event_timestamp)) as
 seconds_between_login_attempts
 from snowflake.account_usage.login_history
-where event_timestamp > date_trunc(month, current_date)
-and is_success = 'NO'
+where is_success = 'NO'
+and event_timestamp >= dateadd(minutes, -{{ time_filter }}, current_timestamp)
 )
 group by 1
 having count(*) > {{ number_of_failures }}
@@ -25,6 +25,7 @@ select distinct
     count(user_name)
 from snowflake.account_usage.login_history
 where is_success = 'NO'
+and event_timestamp >= dateadd(minutes, -{{ time_filter }}, current_timestamp)
 group by user_name, first_authentication_factor
 order by count(user_name) desc
 {%- endmacro %}

@@ -9,6 +9,8 @@ select
     second_authentication_factor
 from snowflake.account_usage.login_history
 where first_authentication_factor = 'RSA_KEYPAIR'
+and event_timestamp >= dateadd(minutes, -{{ time_filter }}, current_timestamp)
+
 order by event_timestamp desc
 {%- endmacro %}
 
@@ -18,5 +20,6 @@ from snowflake.account_usage.users
 where
     has_rsa_public_key = 'true'
     and has_password = 'true'
+    and created_on >= dateadd(minutes, -{{ time_filter }}, current_timestamp)
 {%- endmacro %}
 

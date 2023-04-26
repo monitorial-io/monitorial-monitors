@@ -6,7 +6,7 @@ select
     COUNT(*) AS login_count
 from snowflake.account_usage.login_history
 where is_success = 'YES'
-and end_time >= dateadd(minutes, -{{ time_filter }}, current_time)
+and event_timestamp >= dateadd(minutes, -{{ time_filter }}, current_timestamp)
 group by
     user_name, first_authentication_factor,
     second_authentication_factor
