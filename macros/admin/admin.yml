@@ -149,8 +149,9 @@ macros:
         description: "Retrospective time period in minutes for the query window"
       
   - name: scim_api_calls
-    description: "Applicable if SCIM user-provisioning via the REST API is configured. Monitor SCIM API calls to ensure API requests comply with policy
-        https://docs.snowflake.com/en/user-guide/scim-intro#auditing-with-scim"
+    description: >
+      "Applicable if SCIM user-provisioning via the REST API is configured. Monitor SCIM API calls to ensure API requests comply with policy
+       https://docs.snowflake.com/en/user-guide/scim-intro#auditing-with-scim"
     docs:
       show: true
     arguments:
