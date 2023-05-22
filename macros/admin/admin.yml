@@ -1,7 +1,7 @@
 version: 2
 
 macros:
-  - name: most_blocked_ip_addresses
+  - name: login_from_blocked_ip_address
     description: "Highest frequency of blocked login ip addresses by user and ip address (this requires Network Policies to be configured)"
     docs:
       show: true
