@@ -1,4 +1,4 @@
-{% macro admin_roles_query_checks(query_types = ["SELECT"], time_filter=1440) -%}
+{% macro admin_roles_query_checks(query_types = ["SELECT", "DELETE", "INSERT", "UPDATE"], admin_roles = ["ACCOUNTADMIN", "SECURITYADMIN", "USERADMIN", "SYSADMIN"], time_filter=1440) -%}
 select
     end_time,
     query_type,
@@ -7,7 +7,12 @@ select
     role_name
 from snowflake.account_usage.query_history
 where execution_status = 'SUCCESS'
-    and role_name IN ('ACCOUNTADMIN', 'SECURITYADMIN', 'USERADMIN', 'SYSADMIN')
+    and role_name IN (
+        {%- for admin_role in admin_roles -%}
+        '{{admin_role}}'
+        {% if not loop.last %},{% endif %}
+        {% endfor %}
+    )
     and query_type IN (
         {%- for query_type in query_types -%}
         '{{query_type}}'

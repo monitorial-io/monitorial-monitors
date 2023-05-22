@@ -1,4 +1,4 @@
-{% macro high_priviledge_account(time_filter=1440) -%}
+{% macro high_privilege_account(time_filter=1440) -%}
 select
     user_name,
     role_name,

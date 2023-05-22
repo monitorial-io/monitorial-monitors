@@ -9,7 +9,6 @@ from
     snowflake.account_usage.query_history
 where
     execution_status = 'SUCCESS'
-
     and query_type IN (
         'CREATE_NETWORK_POLICY', 'ALTER_NETWORK_POLICY', 'DROP_NETWORK_POLICY'
     )

@@ -13,7 +13,7 @@ and event_timestamp >= dateadd(minutes, -{{ time_filter }}, current_time)
 order by event_timestamp desc
 {%- endmacro %}
 
-{% macro login_failures (time_filter=1440) -%}
+{% macro login_failures_by_ip_address (time_filter=1440) -%}
 select distinct 
     client_ip, 
     count(client_ip) as count_of_failured_logins
@@ -29,7 +29,7 @@ select distinct
     count (client_ip), 
     user_name,
     reported_client_type as driver,
-    first_authentication_factor as authn_type
+    first_authentication_factor as auth_type
 from 
     snowflake.account_usage.login_history
 where error_message = 'INCOMING_IP_BLOCKED'

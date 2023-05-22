@@ -1,4 +1,4 @@
-{% macro not_using_sso(time_filter=1440) -%}
+{% macro not_using_sso_auth(time_filter=1440) -%}
 with sso as (
     select
         user_name as user_has_used_sso,

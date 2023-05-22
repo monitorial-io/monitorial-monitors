@@ -1,14 +1,339 @@
 version: 2
 
 macros:
-  - name: failed_logins
-    description: "Returns a list of failed logins within the timeperiod specified"
+  - name: most_blocked_ip_addresses
+    description: "Highest frequency of blocked login ip addresses by user and ip address (this requires Network Policies to be configured)"
     docs:
       show: true
     arguments:
-      - name: hours
+      - name: time_filter
         type: integer
-        description: "The number of hours to look back for failed logins"
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: login_failures_by_ip_address
+    description: "Count of login failures by ip address"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: most_blocked_ip_addresses
+    description: "Count of blocked ip address login failures by username, ip address, driver and authentication type"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: changes_to_network_policies
+    description: "Monitor changes to Network Policies and associated objects"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: has_network_policy
+    description: "Monitors network policies are present"
+    docs:
+      show: true
+    
+  - name: altered_client_sessions
+    description: "Monitor for client applications that are keeping sessions open longer than desired by policy"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: grant_changes
+    description: "Snowflake recommends using a designated role for all user management tasks. Monitor that
+                  all user and role grants originate from this role, and that this role is only granted to
+                  appropriate users"
+    docs:
+      show: true
+    arguments:
+      - name: role_name
+        type: string
+        description: "The role your organization has dedicated to granting privileges, securityadmin is the default"
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+      
+
+  - name: admin_roles_query_checks
+    description: "Monitor for all instances of a user using the default Snowflake admin roles to ensure their use is appropriate"
+    docs:
+      show: true
+    arguments:
+      - name: admin_roles
+        type: List[string]
+        description: "The admin roles to monitor for ACCOUNTADMIN, SECURITYADMIN, USERADMIN and SYSADMIN are the defaults"
+      - name: query_types
+        type: List[string]
+        description: "The query types to monitor for SELECT, UPDATE, INSERT DELETE are the defaults"
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: user_creation
+    description: "Monitors for the creation of users"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+  
+  
+  - name: user_creation_non_admin
+    description: "Monitors for user creation by non admin roles"
+    docs:
+      show: true
+    arguments:
+      - name: executing_role_names
+        type: List[string]
+        description: "The admin roles to monitor for USERADMIN is the defaults"
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: user_altered
+    description: "Monitors occurrences of altered users"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: user_altered_key_pair
+    description: "Monitors occurrences of altered users key pair auth removal"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: user_altered_mfa_bypass
+    description: "Monitors occurrences of altered users mfa bypass time period"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: enabled_user_previously_disabled
+    description: "Monitors instances where a previously disabled user has been enabled"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: plaintext_password_altered
+    description: "Monitor for enabled plaintext user passwords"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+      
+  - name: scim_api_calls
+    description: "Applicable if SCIM user-provisioning via the REST API is configured. Monitor SCIM API calls to ensure API requests comply with policy
+        https://docs.snowflake.com/en/user-guide/scim-intro#auditing-with-scim"
+    docs:
+      show: true
+    arguments:
+      - name: number_requests
+        type: integer
+        description: 
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: high_privilege_account
+    description: "Monitor the following global privileges in QUERY_HISTORY because they involve elevated privileges in your Snowflake Account"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: accountadmin_role_grants
+    description: "The Snowflake role ACCOUNTADMIN should be closely monitored for granting to new users"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: public_role_grants
+    description: "The public role should have the fewest possible grants. Every user in a Snowflake account
+      has public. Monitor QUERY_HISTORY for alterations or grants to the public role"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: authentication_by_user
+    description: "Monitors the number of times each user authenticated and the authentication method they used"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: not_using_sso_auth
+    description: "Monitor if users who have used SSO before are using other authentication methods instead
+        After users successfully authenticate using SSO, they should not be using other methods"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: by_key_pair_auth
+    description: "Monitor the use of key pair authentication by querying login attempt"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: has_key_pair_not_using
+    description: "Monitor if exclusive Key Pair authentication users are configured to use other
+      authentication methods.  Users who have key pair authentication should be using it exclusively"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: has_key_pair_not_using
+    description: "Monitor if exclusive Key Pair authentication users are configured to use other
+      authentication methods.  Users who have key pair authentication should be using it exclusively"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: frequently_authenticated_users
+    description: "Identifying Users who login frequently can help spot anomalies or unexpected behavior"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: scim_token_creation
+    description: "SCIM access tokens have a six-month lifespan so it is important to track how many were generated"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: failed_login_attempts_concurrent
+    description: "The following approach returns results based on either the FAILED_LOGINS count or the
+        log in failure rate (AVERAGE_SECONDS_BETWEEN_LOGIN_ATTEMPTS). This approach helps
+        distinguish a brute force attack from a human who is struggling to remember their password.
+        There are inline comments on how to adjust the query to limit results"
+    docs:
+      show: true
+    arguments:
+      - name: number_of_failures
+        type: integer
+        description: "The number of concurrent failures default is 3"
+      - name: seconds_between_failures
+        type: integer
+        description: "The amount of time in seconds between failures default is 5"
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: mfa_auth_stats
+    description: "Multi factor authentication stats"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: password_login_when_mfa
+    description: "Most recent logins without MFA"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: periodic_rekey_enabled
+    description: "Checks that automatic data rekeying is turned on to provide additional data security"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: periodic_rekey_changes
+    description: "Changes to this setting are rare and deserving of scrutiny"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: integration_changes
+    description: "Because integrations can enable a new means of access to Snowflake data, closely monitor for new integrations or the modification of existing integrations"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: security_integration_changes
+    description: "Because security integrations can enable a new means of access to Snowflake data, closely monitor for new integrations or the modification of existing security integrations"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+      
+
+
+
+
+
+
+  
 
   - name: orphaned_roles
     description: "Returns a list of orphaned roles"
@@ -18,3 +343,5 @@ macros:
       - name: exception_list
         type: List[string]
         description: "List of roles to exclude from the check"
+
+  

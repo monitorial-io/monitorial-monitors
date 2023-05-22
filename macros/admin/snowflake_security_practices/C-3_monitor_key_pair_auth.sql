@@ -1,4 +1,4 @@
-{% macro by_key_pair(time_filter=1440) -%}
+{% macro by_key_pair_auth(time_filter=1440) -%}
 select
     event_timestamp,
     user_name,
