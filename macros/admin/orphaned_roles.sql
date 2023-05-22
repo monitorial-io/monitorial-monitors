@@ -3,10 +3,8 @@
 WITH exception_list AS (
 
   SELECT role_names.value::string AS role_exception
-  FROM TABLE(flatten(input => parse_json('{{ exception_list }}'))) role_names
-
+  FROM TABLE(flatten(input => parse_json('["{{ '","'.join(exception_list) }}"]'))) role_names 
 ),
-
 active_roles AS (
 
     SELECT name
@@ -15,9 +13,7 @@ active_roles AS (
         SELECT exception_list.role_exception
         FROM exception_list) AND
         deleted_on IS NULL
-
 ),
-
 role_grants AS (
 
     SELECT DISTINCT NAME
@@ -29,11 +25,9 @@ role_grants AS (
         deleted_on IS NULL AND
         privilege = 'USAGE'
 )
-
 SELECT active_roles.name
 FROM
     active_roles
     LEFT OUTER JOIN role_grants ON active_roles.name = role_grants.name
 WHERE role_grants.name IS NULL
-
 {%- endmacro %}
