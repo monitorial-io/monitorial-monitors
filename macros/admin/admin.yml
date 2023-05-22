@@ -317,14 +317,6 @@ macros:
       - name: time_filter
         type: integer
         description: "Retrospective time period in minutes for the query window"
-      
-
-
-
-
-
-
-  
 
   - name: orphaned_roles
     description: "Returns a list of orphaned roles"
@@ -333,6 +325,6 @@ macros:
     arguments:
       - name: exception_list
         type: List[string]
-        description: "List of roles to exclude from the check"
+        description: "List of roles to exclude from the check, default is ACCOUNTADMIN, ORGADMIN, PUBLIC"
 
   

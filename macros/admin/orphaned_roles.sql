@@ -1,4 +1,4 @@
-{% macro orphan_roles(exception_list) -%}
+{% macro orphan_roles(exception_list=["ACCOUNTADMIN", "ORGADMIN", "PUBLIC"]) -%}
 
 WITH exception_list AS (
 
