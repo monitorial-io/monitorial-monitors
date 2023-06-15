@@ -1,0 +1,13 @@
+version: 2
+
+macros:
+  - name: orphaned_roles
+    description: "Returns a list of orphaned roles"
+    docs:
+      show: true
+    arguments:
+      - name: exception_list
+        type: List[string]
+        description: "List of roles to exclude from the check, default is ACCOUNTADMIN, ORGADMIN, PUBLIC"
+
+  

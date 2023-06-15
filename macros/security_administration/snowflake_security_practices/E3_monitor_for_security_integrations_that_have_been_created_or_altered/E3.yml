@@ -1,0 +1,13 @@
+version: 2
+
+macros:
+  - name: security_integration_changes
+    description: "Because security integrations can enable a new means of access to Snowflake data, closely monitor for new integrations or the modification of existing security integrations"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  
