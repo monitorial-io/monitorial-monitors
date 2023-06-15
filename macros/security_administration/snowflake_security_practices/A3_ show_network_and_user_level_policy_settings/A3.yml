@@ -1,0 +1,9 @@
+version: 2
+
+macros:
+  
+  - name: has_network_policy
+    description: "Monitors network policies are present"
+    docs:
+      show: true
+    

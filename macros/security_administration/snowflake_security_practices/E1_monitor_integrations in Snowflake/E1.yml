@@ -1,0 +1,11 @@
+version: 2
+
+macros:
+  - name: integration_object_changes
+    description: "Because integrations can enable a new means of access to Snowflake data, closely monitor for new integrations or the modification of existing integrations"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"

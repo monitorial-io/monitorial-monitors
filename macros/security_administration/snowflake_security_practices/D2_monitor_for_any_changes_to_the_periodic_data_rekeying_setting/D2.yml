@@ -1,0 +1,20 @@
+version: 2
+
+macros:
+  - name: periodic_rekey_enabled
+    description: "Checks that automatic data rekeying is turned on to provide additional data security"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: periodic_rekey_changes
+    description: "Changes to this setting are rare and deserving of scrutiny"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"

@@ -1,0 +1,11 @@
+version: 2
+
+macros:
+  - name: high_privilege_grants
+    description: "Monitor the following global privileges in QUERY_HISTORY because they involve elevated privileges in your Snowflake Account"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"

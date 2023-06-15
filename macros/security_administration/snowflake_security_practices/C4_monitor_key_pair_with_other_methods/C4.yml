@@ -1,0 +1,12 @@
+version: 2
+
+macros:
+  - name: not_using_key_pair_auth
+    description: "Monitor if exclusive Key Pair authentication users are configured to use other
+      authentication methods.  Users who have key pair authentication should be using it exclusively"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"

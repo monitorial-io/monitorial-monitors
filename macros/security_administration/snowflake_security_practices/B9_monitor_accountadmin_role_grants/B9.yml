@@ -1,0 +1,11 @@
+version: 2
+
+macros:
+  - name: accountadmin_role_grants
+    description: "The Snowflake role ACCOUNTADMIN should be closely monitored for granting to new users"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"

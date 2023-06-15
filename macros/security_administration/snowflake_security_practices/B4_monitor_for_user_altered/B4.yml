@@ -1,0 +1,29 @@
+version: 2
+
+macros:
+  - name: user_altered
+    description: "Monitors occurrences of altered users"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: user_altered_key_pair
+    description: "Monitors occurrences of altered users key pair auth removal"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: user_altered_mfa_bypass
+    description: "Monitors occurrences of altered users mfa bypass time period"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"

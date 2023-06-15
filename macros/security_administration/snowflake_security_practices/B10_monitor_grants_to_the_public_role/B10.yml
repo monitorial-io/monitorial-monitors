@@ -1,0 +1,12 @@
+version: 2
+
+macros:
+  - name: public_role_grants
+    description: "The public role should have the fewest possible grants. Every user in a Snowflake account
+      has public. Monitor QUERY_HISTORY for alterations or grants to the public role"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"

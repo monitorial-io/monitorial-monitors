@@ -1,0 +1,12 @@
+version: 2
+
+macros:
+  - name: not_using_sso_auth
+    description: "Monitor if users who have used SSO before are using other authentication methods instead
+        After users successfully authenticate using SSO, they should not be using other methods"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"

@@ -1,0 +1,12 @@
+version: 2
+
+macros:
+  - name: scim_token_creation
+    description: "SCIM access tokens have a six-month lifespan so it is important to track how many were generated
+      This monitor needs accountadmin right to run, so careful planning required to implement this monitor"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"

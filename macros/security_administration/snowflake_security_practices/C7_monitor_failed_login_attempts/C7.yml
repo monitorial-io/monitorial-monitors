@@ -1,0 +1,29 @@
+version: 2
+
+macros:
+  - name: failed_login_attempts_concurrent
+    description: "The following approach returns results based on either the FAILED_LOGINS count or the
+        log in failure rate (AVERAGE_SECONDS_BETWEEN_LOGIN_ATTEMPTS). This approach helps
+        distinguish a brute force attack from a human who is struggling to remember their password.
+        There are inline comments on how to adjust the query to limit results"
+    docs:
+      show: true
+    arguments:
+      - name: number_of_failures
+        type: integer
+        description: "The number of concurrent failures default is 3"
+      - name: seconds_between_failures
+        type: integer
+        description: "The amount of time in seconds between failures default is 5"
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: failed_login_attempts
+    description: Failed login monitor grouped by user and first auth method
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"

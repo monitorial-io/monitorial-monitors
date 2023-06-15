@@ -1,0 +1,16 @@
+version: 2
+
+macros:
+  - name: scim_api_calls
+    description: >
+      "Applicable if SCIM user-provisioning via the REST API is configured. Monitor SCIM API calls to ensure API requests comply with policy
+       https://docs.snowflake.com/en/user-guide/scim-intro#auditing-with-scim"
+    docs:
+      show: true
+    arguments:
+      - name: number_requests
+        type: integer
+        description: "The number of scim requests to filter on (max = 200)"
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"

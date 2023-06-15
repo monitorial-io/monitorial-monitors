@@ -1,0 +1,20 @@
+version: 2
+
+macros:
+  - name: mfa_auth_stats
+    description: "Multi factor authentication stats"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: password_login_when_mfa
+    description: "Most recent logins with password when MFA is enabled"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"

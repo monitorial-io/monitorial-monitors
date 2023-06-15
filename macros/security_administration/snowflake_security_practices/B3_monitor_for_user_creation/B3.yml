@@ -1,0 +1,25 @@
+version: 2
+
+macros:
+  
+  - name: user_creation
+    description: "Monitors for the creation of users"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+  
+  
+  - name: user_creation_non_admin
+    description: "Monitors for user creation by non admin roles"
+    docs:
+      show: true
+    arguments:
+      - name: executing_role_names
+        type: List[string]
+        description: "The admin roles to monitor for USERADMIN is the defaults"
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"

@@ -1,0 +1,31 @@
+version: 2
+
+macros:
+  - name: login_from_blocked_ip_address
+    description: "Highest frequency of blocked login ip addresses by user and ip address (this requires Network Policies to be configured)"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: login_failures_by_ip_address
+    description: "Count of login failures by ip address"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: most_blocked_ip_addresses
+    description: "Count of blocked ip address login failures by username, ip address, driver and authentication type"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  

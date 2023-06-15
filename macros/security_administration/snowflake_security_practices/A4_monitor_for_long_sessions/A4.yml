@@ -1,0 +1,12 @@
+version: 2
+
+macros:
+  
+  - name: altered_client_sessions
+    description: "Monitor for client applications that are keeping sessions open longer than desired by policy"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"

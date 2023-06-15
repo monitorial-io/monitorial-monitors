@@ -1,0 +1,11 @@
+version: 2
+
+macros:
+  - name: plaintext_password_altered
+    description: "Monitor for enabled plaintext user passwords"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"

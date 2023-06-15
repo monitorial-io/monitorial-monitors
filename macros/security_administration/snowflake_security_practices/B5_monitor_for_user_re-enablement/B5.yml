@@ -1,0 +1,11 @@
+version: 2
+
+macros:
+  - name: enabled_user_previously_disabled
+    description: "Monitors instances where a previously disabled user has been enabled"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"

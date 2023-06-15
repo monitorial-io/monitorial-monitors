@@ -1,0 +1,12 @@
+version: 2
+
+macros:
+  
+  - name: changes_to_network_policies
+    description: "Monitor changes to Network Policies and associated objects"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"

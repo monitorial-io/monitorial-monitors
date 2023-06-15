@@ -1,0 +1,11 @@
+version: 2
+
+macros:
+  - name: authentication_method_by_user
+    description: "Monitors the number of times each user authenticated and the authentication method they used"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
