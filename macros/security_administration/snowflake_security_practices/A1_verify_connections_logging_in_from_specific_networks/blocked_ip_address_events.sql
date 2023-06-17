@@ -8,7 +8,8 @@ select
     second_authentication_factor
 from 
     snowflake.account_usage.login_history 
-where error_message = 'INCOMING_IP_BLOCKED'
-and event_timestamp >= dateadd(minutes, -{{ time_filter }}, current_time)
+where 
+    error_message = 'INCOMING_IP_BLOCKED'
+    and event_timestamp >= dateadd(minutes, -{{ time_filter }}, current_time)
 order by event_timestamp desc
 {%- endmacro %}

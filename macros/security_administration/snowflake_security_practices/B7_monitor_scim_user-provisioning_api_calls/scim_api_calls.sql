@@ -1,4 +1,4 @@
-{% macro scim_api_calls(number_requests, time_filter=1440) -%}
+{% macro scim_api_calls(number_requests=50, time_filter=1440) -%}
 select *
 from
     table(snowflake.information_schema.rest_event_history(

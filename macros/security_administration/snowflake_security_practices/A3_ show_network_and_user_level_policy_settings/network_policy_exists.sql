@@ -1,4 +1,4 @@
-{% macro has_network_policy () -%}
+{% macro network_policy_exists () -%}
 --<prereq> show parameters like 'network_policy' in account;
 select 
     * 

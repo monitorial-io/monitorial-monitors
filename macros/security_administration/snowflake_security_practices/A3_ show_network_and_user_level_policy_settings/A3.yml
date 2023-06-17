@@ -2,8 +2,8 @@ version: 2
 
 macros:
   
-  - name: has_network_policy
-    description: "Monitors network policies are present"
+  - name: network_policy_exists
+    description: "Monitors for the presence of network policy"
     docs:
       show: true
     

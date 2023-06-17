@@ -19,3 +19,13 @@ macros:
       - name: time_filter
         type: integer
         description: "Retrospective time period in minutes for the query window"
+
+  - name: not_using_key_pair_auth
+    description: "Monitor if users who have used key/pair authentication before are using password methods instead
+        After users successfully authenticate using key/pair, they should not be using passwords"
+    docs:
+      show: true
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"

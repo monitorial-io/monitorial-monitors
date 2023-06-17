@@ -5,7 +5,9 @@ select
     query_text,
     user_name,
     role_name
-from snowflake.account_usage.query_history where
+from 
+    snowflake.account_usage.query_history 
+where
     execution_status = 'SUCCESS'
     and query_type = 'ALTER_USER'
     and query_text ilike '%alter user%set mins_to_bypass_mfa%'

@@ -5,7 +5,8 @@ select
     query_text,
     user_name,
     role_name
-from snowflake.account_usage.query_history 
+from 
+    snowflake.account_usage.query_history 
 where
     execution_status = 'SUCCESS'
     and query_type = 'ALTER_USER'

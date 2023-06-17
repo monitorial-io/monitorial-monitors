@@ -1,11 +1,12 @@
-{% macro user_altered_plaintext_to_password(time_filter=1440) -%}
+{% macro user_altered_to_plaintext_password(time_filter=1440) -%}
 select
     end_time,
     query_type,
     query_text,
     user_name,
     role_name
-from snowflake.account_usage.query_history
+from 
+    snowflake.account_usage.query_history
 where
     execution_status = 'SUCCESS'
     and query_type = 'ALTER_USER'

@@ -4,7 +4,8 @@ select
     role_name,
     query_text,
     end_time
-from snowflake.account_usage.query_history
+from 
+    snowflake.account_usage.query_history
 where
     execution_status = 'SUCCESS'
     and query_type = 'GRANT'

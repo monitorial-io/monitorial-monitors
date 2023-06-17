@@ -5,7 +5,9 @@ select
     query_text,
     user_name,
     role_name
-from snowflake.account_usage.query_history where
+from 
+    snowflake.account_usage.query_history 
+where
     execution_status = 'SUCCESS'
     and query_type = 'ALTER_USER'
     and end_time >= dateadd(minutes, -{{ time_filter }}, current_timestamp)

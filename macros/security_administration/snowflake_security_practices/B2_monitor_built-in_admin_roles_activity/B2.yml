@@ -2,14 +2,14 @@ version: 2
 
 macros:
   
-  - name: admin_roles_query_checks
+  - name: admin_roles_query_check
     description: "Monitor for all instances of a user using the default Snowflake admin roles to ensure their use is appropriate"
     docs:
       show: true
     arguments:
       - name: admin_roles
         type: List[string]
-        description: "The admin roles to monitor for ACCOUNTADMIN, SECURITYADMIN, USERADMIN and SYSADMIN are the defaults"
+        description: "The admin roles to monitor for; default = ACCOUNTADMIN, SECURITYADMIN, USERADMIN, SYSADMIN"
       - name: query_types
         type: List[string]
         description: "The query types to monitor for SELECT, UPDATE, INSERT DELETE are the defaults"

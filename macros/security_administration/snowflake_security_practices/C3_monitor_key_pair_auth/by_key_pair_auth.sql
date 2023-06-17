@@ -7,10 +7,12 @@ select
         as reported_client_version,
     first_authentication_factor,
     second_authentication_factor
-from snowflake.account_usage.login_history
-where first_authentication_factor = 'RSA_KEYPAIR'
-and event_timestamp >= dateadd(minutes, -{{ time_filter }}, current_timestamp)
-
-order by event_timestamp desc
+from 
+    snowflake.account_usage.login_history
+where 
+    first_authentication_factor = 'RSA_KEYPAIR'
+    and event_timestamp >= dateadd(minutes, -{{ time_filter }}, current_timestamp)
+order by 
+    event_timestamp desc
 {%- endmacro %}
 

@@ -2,8 +2,10 @@
 select distinct 
     client_ip, 
     count(client_ip) as count_of_failured_logins
-from snowflake.account_usage.login_history
-where is_success='NO'
-and event_timestamp >= dateadd(minutes, -{{ time_filter }}, current_time)
+from 
+    snowflake.account_usage.login_history
+where 
+    is_success='NO'
+    and event_timestamp >= dateadd(minutes, -{{ time_filter }}, current_time)
 group by client_ip
 {%- endmacro %}

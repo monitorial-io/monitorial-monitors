@@ -10,7 +10,7 @@ macros:
     arguments:
       - name: number_requests
         type: integer
-        description: "The number of scim requests to filter on (max = 200)"
+        description: "The number of scim requests to filter on; max = 200; default=50"
       - name: time_filter
         type: integer
         description: "Retrospective time period in minutes for the query window"

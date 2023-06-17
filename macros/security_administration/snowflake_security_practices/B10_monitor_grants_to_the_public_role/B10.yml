@@ -2,8 +2,8 @@ version: 2
 
 macros:
   - name: public_role_grants
-    description: "The public role should have the fewest possible grants. Every user in a Snowflake account
-      has public. Monitor QUERY_HISTORY for alterations or grants to the public role"
+    description: "The public role should have the fewest possible grants (read none). Every user in a Snowflake account
+      has the public role granted to them. Monitor QUERY_HISTORY for alterations or grants to the public role"
     docs:
       show: true
     arguments:
