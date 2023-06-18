@@ -24,6 +24,9 @@ macros:
     docs:
       show: true
     arguments:
+      - name: number_of_failures
+        type: integer
+        description: "The number of concurrent failures default is 2"
       - name: time_filter
         type: integer
         description: "Retrospective time period in minutes for the query window"

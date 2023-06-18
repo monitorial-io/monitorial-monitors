@@ -9,3 +9,7 @@ macros:
       - name: time_filter
         type: integer
         description: "Retrospective time period in minutes for the query window"
+      - name: authentication_count_greater
+        type: integer
+        description: "The number of distinct authorizations to monitor above; default = 25"
+

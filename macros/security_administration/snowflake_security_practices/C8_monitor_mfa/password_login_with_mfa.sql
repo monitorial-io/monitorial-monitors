@@ -3,11 +3,11 @@ select
     event_timestamp,
     user_name,
     client_ip,
-    reported_client_type
-        as reported_client_version,
+    reported_client_type as reported_client_version,
     first_authentication_factor,
     second_authentication_factor
-from snowflake.account_usage.login_history
+from 
+    snowflake.account_usage.login_history
 where
     first_authentication_factor = 'PASSWORD'
     and second_authentication_factor is null

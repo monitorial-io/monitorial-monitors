@@ -1,4 +1,4 @@
-{% macro not_using_key_pair_auth(time_filter=1440) -%}
+{% macro has_key_pair_using_password(time_filter=1440) -%}
 with key_pair_first_login as (
     select
         user_name,

@@ -1,4 +1,4 @@
-{% macro key_pair_and_password(time_filter=1440) -%}
+{% macro has_key_pair_and_password(time_filter=1440) -%}
 select * 
 from 
     snowflake.account_usage.users
