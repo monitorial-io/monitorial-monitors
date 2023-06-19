@@ -1,9 +1,9 @@
-{% macro orphan_roles(exception_list=["ACCOUNTADMIN", "ORGADMIN", "PUBLIC"]) -%}
+{% macro orphaned_roles(exception_list=["ACCOUNTADMIN", "ORGADMIN", "PUBLIC"]) -%}
 
 WITH exception_list AS (
 
   SELECT role_names.value::string AS role_exception
-  FROM TABLE(flatten(input => parse_json('["{{ '","'.join(exception_list) }}"]'))) role_names 
+  FROM TABLE(flatten(input => parse_json('["{{ '","'.join(exception_list) }}"]'))) role_names
 ),
 active_roles AS (
 
