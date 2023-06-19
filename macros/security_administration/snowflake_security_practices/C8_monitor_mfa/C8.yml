@@ -1,0 +1,32 @@
+version: 2
+
+macros:
+  - name: mfa_auth_stats
+    description: "Multi factor authentication stats"
+    docs:
+      show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "info"
+      message: "Logins without MFA stats"
+      message_type: "security"
+      environment: "account"  
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: password_login_with_mfa
+    description: "Most recent logins with password when MFA is enabled"
+    docs:
+      show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "Logins with password detected"
+      message_type: "security"
+      environment: "account"  
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"

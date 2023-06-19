@@ -1,0 +1,34 @@
+version: 2
+
+macros:
+  - name: orphaned_roles
+    description: "Returns a list of orphaned roles"
+    docs:
+      show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "Orphaned Roles detected"
+      message_type: "security"
+      environment: "account"  
+    arguments:
+      - name: exception_list
+        type: List[string]
+        description: "List of roles to exclude from the check, default is ACCOUNTADMIN, ORGADMIN, PUBLIC"
+
+  - name: scim_token_expiry
+    description: Alerts a configurable numbers of days has past since the last token creation
+    docs:
+      show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "info"
+      message: "SCIM Access Token is due to expire soon"
+      message_type: "security"
+      environment: "account"  
+    arguments:
+      - name: warn_after_days
+        type: integer
+        description: "The number of days after the last SCIM token creation date"
+
+  

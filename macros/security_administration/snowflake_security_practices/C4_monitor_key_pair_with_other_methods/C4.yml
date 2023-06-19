@@ -1,0 +1,34 @@
+version: 2
+
+macros:
+  - name: has_key_pair_using_other
+    description: "Monitor if exclusive Key Pair authentication users are configured to use other
+      authentication methods.  Users who have key pair authentication should be using it exclusively"
+    docs:
+      show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "User with key pair using other forms of authenication detected"
+      message_type: "administration"
+      environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: has_key_pair_using_password
+    description: "Monitor if users who have used key/pair authentication before are using password methods instead
+        After users successfully authenticate using key/pair, they should not be using passwords"
+    docs:
+      show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "User with key pair using password authenication detected"
+      message_type: "administration"
+      environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"

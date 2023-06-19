@@ -1,0 +1,21 @@
+version: 2
+
+macros:
+  - name: frequently_authenticated_users
+    description: "Identifying Users who login frequently can help spot anomalies or unexpected behavior"
+    docs:
+      show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "Frequently user logins detected"
+      message_type: "administration"
+      environment: "account"    
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+      - name: authentication_count_greater
+        type: integer
+        description: "The number of distinct authorizations to monitor above; default = 25"
+

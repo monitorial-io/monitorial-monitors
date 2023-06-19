@@ -1,0 +1,18 @@
+version: 2
+
+macros:
+  - name: public_role_grants
+    description: "The public role should have the fewest possible grants (read none). Every user in a Snowflake account
+      has the public role granted to them. Monitor QUERY_HISTORY for alterations or grants to the public role"
+    docs:
+      show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "Grants to PUBLIC role detected"
+      message_type: "security"
+      environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"

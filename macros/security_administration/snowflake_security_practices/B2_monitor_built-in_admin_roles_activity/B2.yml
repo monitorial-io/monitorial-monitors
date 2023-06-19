@@ -1,0 +1,24 @@
+version: 2
+
+macros:
+  
+  - name: admin_roles_query_check
+    description: "Monitor for all instances of a user using the default Snowflake admin roles to ensure their use is appropriate"
+    docs:
+      show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "Inappropriate use of Admin roles detected"
+      message_type: "security"
+      environment: "account"
+    arguments:
+      - name: admin_roles
+        type: List[string]
+        description: "The admin roles to monitor for; default = ACCOUNTADMIN, SECURITYADMIN, USERADMIN, SYSADMIN"
+      - name: query_types
+        type: List[string]
+        description: "The query types to monitor for SELECT, UPDATE, INSERT DELETE are the defaults"
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"

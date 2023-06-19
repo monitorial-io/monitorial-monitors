@@ -1,0 +1,23 @@
+version: 2
+
+macros:
+  
+  - name: unauthorized_privilege_grants
+    description: "Snowflake recommends using a designated role for all user management tasks. Monitor that
+                  all user and role grants originate from this role, and that this role is only granted to
+                  appropriate users"
+    docs:
+      show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "Privileges granted from un designated roles detected"
+      message_type: "security"
+      environment: "account"
+    arguments:
+      - name: authorized_role_names
+        type: List[string]
+        description: "The role(s) your organization has dedicated to granting privileges; default = SECURITYADMIN"
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"

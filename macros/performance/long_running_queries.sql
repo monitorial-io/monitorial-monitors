@@ -11,7 +11,7 @@ SELECT
     warehouse_name,
     start_time,
     DATEDIFF(MINUTES, start_time, CURRENT_TIMESTAMP) AS total_lapsed_time
-FROM TABLE(snowflake.information_schema.query_history(end_time_range_start => DATEADD(MINUTE, -5, CURRENT_TIMESTAMP())))
+FROM TABLE(snowflake.information_schema.query_history(end_time_range_start => DATEADD(MINUTE, -{{ minutes }}, CURRENT_TIMESTAMP())))
 WHERE
     (
         execution_status != 'SUCCESS'

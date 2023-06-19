@@ -1,0 +1,17 @@
+version: 2
+
+macros:
+  - name: user_altered_to_plaintext_password
+    description: "Monitor for the enablement of plaintext user passwords"
+    docs:
+      show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "Altered user(s) to plain text password detected"
+      message_type: "security"
+      environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"

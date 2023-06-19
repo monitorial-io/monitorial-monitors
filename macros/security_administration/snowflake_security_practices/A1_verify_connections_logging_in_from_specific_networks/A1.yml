@@ -1,0 +1,49 @@
+version: 2
+
+macros:
+  - name: blocked_ip_address_events
+    description: "Blocked ip address login failures (this requires Network Policies to be configured)"
+    docs:
+      show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "logins from blocked ip addresses detected"
+      message_type: "security"
+      environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: login_failures_by_ip_address
+    description: "Count of login failures by ip address"
+    docs:
+      show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "logins from blocked ip addresses detected"
+      message_type: "security"
+      environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: blocked_ip_address_aggregate
+    description: "Blocked ip address login failures aggregated by username, ip address, driver and authentication type (this requires Network Policies to be configured)"
+    docs:
+      show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "logins from blocked ip addresses detected"
+      message_type: "security"
+      environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  
