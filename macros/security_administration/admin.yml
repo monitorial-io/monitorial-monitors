@@ -10,7 +10,7 @@ macros:
       severity: "warning"
       message: "Orphaned Roles detected"
       message_type: "security"
-      environment: "N/A"  
+      environment: "account"  
     arguments:
       - name: exception_list
         type: List[string]
@@ -25,7 +25,7 @@ macros:
       severity: "info"
       message: "SCIM Access Token is due to expire soon"
       message_type: "security"
-      environment: "N/A"  
+      environment: "account"  
     arguments:
       - name: warn_after_days
         type: integer

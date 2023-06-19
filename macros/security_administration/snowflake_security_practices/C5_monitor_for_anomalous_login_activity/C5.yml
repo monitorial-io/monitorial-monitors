@@ -10,7 +10,7 @@ macros:
       severity: "warning"
       message: "Frequently user logins detected"
       message_type: "administration"
-      environment: "N/A"    
+      environment: "account"    
     arguments:
       - name: time_filter
         type: integer

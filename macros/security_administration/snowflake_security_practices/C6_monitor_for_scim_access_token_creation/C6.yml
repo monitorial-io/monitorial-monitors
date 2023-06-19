@@ -11,7 +11,7 @@ macros:
       severity: "warning"
       message: "SCIM Access Token generated"
       message_type: "security"
-      environment: "N/A"    
+      environment: "account"    
     arguments:
       - name: time_filter
         type: integer

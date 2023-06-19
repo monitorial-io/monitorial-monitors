@@ -13,7 +13,7 @@ macros:
       severity: "warning"
       message: "Concurrent failed logins detected"
       message_type: "security"
-      environment: "N/A"  
+      environment: "account"  
     arguments:
       - name: number_of_failures
         type: integer
@@ -34,7 +34,7 @@ macros:
       severity: "info"
       message: "Failed logins detected"
       message_type: "security"
-      environment: "N/A"  
+      environment: "account"  
     arguments:
       - name: number_of_failures
         type: integer

@@ -11,5 +11,5 @@ macros:
       severity: "warning"
       message: "No Network Policy detected"
       message_type: "security"
-      environment: "N/A"
+      environment: "account"
     

@@ -10,7 +10,7 @@ macros:
       severity: "warning"
       message: "Altered user(s) to plain text password detected"
       message_type: "security"
-      environment: "N/A"
+      environment: "account"
     arguments:
       - name: time_filter
         type: integer

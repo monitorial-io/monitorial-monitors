@@ -11,7 +11,7 @@ macros:
       severity: "warning"
       message: "Inappropriate use of Admin roles detected"
       message_type: "security"
-      environment: "N/A"
+      environment: "account"
     arguments:
       - name: admin_roles
         type: List[string]

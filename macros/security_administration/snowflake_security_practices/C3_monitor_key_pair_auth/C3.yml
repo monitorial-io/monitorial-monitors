@@ -10,7 +10,7 @@ macros:
       severity: "info"
       message: "key pair auth report"
       message_type: "administration"
-      environment: "N/A"
+      environment: "account"
     arguments:
       - name: time_filter
         type: integer
@@ -26,7 +26,7 @@ macros:
       severity: "warning"
       message: "User with key pair and password detected"
       message_type: "administration"
-      environment: "N/A"
+      environment: "account"
     arguments:
       - name: time_filter
         type: integer

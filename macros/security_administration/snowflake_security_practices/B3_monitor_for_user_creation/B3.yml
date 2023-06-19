@@ -11,7 +11,7 @@ macros:
       severity: "warning"
       message: "Creation of new user(s) detected"
       message_type: "security"
-      environment: "N/A"
+      environment: "account"
     arguments:
       - name: time_filter
         type: integer
@@ -27,7 +27,7 @@ macros:
       severity: "warning"
       message: "Creation of new user(s) from non Admin roles detected"
       message_type: "security"
-      environment: "N/A"
+      environment: "account"
     arguments:
       - name: executing_role_names
         type: List[string]
