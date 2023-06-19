@@ -4,7 +4,7 @@ This repository is an open source project that aims to provide scripts which can
  
 These scripts can be used and scheduled with `Snowflake Alerts` or `Snowflake Tasks`.
 
-The easy and quickest way to consume and deploy these Snowflake monitors it with the Snowflake monitoring service monitorial.io (https://manager.monitorial.io) which has a Wizard where you can select the
+The easy and quickest way to consume and deploy these Snowflake monitors is with the Snowflake monitoring service monitorial.io (https://manager.monitorial.io) which has a Wizard where you can select the
 Snowflake monitors you want and monitorial.io will deploy these for you and send alerts to the destinations of your choice such as Slack, Teams, Webhook, Splunk, Azure Log Analytics, AWS Cloudwatch, Email
 
 
