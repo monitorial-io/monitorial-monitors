@@ -150,5 +150,5 @@ if __name__ == '__main__':
                 group["macros"] += f"|{macro.name}|{macro.description}|\n"
         
     for group in groups:
-        print(f"""### {group["name"].replace("_", "").title()}\n\n{group['macros']}""")
+        print(f"""### {group["name"].replace("_", " ").title()}\n\n{group['macros']}""")
    
