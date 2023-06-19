@@ -30,8 +30,8 @@ to contribute to this project please fork the repository and submit a pull reque
 
 ## Available Macros
 
-## Snowflake Security Features Checklist
-### A1 Verify connections logging in from specific networks
+### Snowflake Security Features Checklist
+#### A1 Verify connections logging in from specific networks
 * blocked IP address login events
 * blocked IP address login aggregate
 * login failures by ip address
