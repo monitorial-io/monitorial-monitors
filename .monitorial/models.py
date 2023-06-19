@@ -52,7 +52,7 @@ class macro_details():
         self.schedule = ""
         self.severity = ""
         self.message = ""
-        self.enviornment = ""
+        self.environment = ""
         self.grouping= ""
         self.name = ""
         self.description = ""
@@ -70,7 +70,7 @@ class macro_details():
         data["defaults"]["schedule"] = self.schedule
         data["defaults"]["severity"] = self.severity
         data["defaults"]["message"] = self.message
-        data["defaults"]["enviornment"] = self.enviornment
+        data["defaults"]["environment"] = self.environment
         data["defaults"]["message_type"] = self.message_type
         
         

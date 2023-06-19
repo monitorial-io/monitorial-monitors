@@ -101,7 +101,7 @@ def get_file_items(path, macros:List[macro_details]):
                         details.schedule = "* 8 * * *"
                         details.severity = "warning"
                         details.message = "No message provided"
-                        details.enviornment = "prod"
+                        details.environment = "prod"
                         details.message_type = details.classification
 
                     details.contents = get_macro_content(path, details.name)

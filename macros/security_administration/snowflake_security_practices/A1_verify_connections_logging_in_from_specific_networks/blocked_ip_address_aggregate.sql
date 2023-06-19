@@ -1,4 +1,4 @@
-{% macro most_blocked_ip_addresses (time_filter=1440) -%}
+{% macro blocked_ip_address_aggregate(time_filter=1440) -%}
 select distinct 
     client_ip as blocked_source_ip,
     count (client_ip), 
