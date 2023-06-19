@@ -53,22 +53,19 @@ macros:
 
 
 ## Available Macros
-**Performance**
+### Performance
 
 | name                 | description                                                                            |
 | -------------------- | -------------------------------------------------------------------------------------- |
 | long_running_queries | Returns a list of queries that have been running for more than the specified timeframe |
 
-### Admin
-* Scim token expiry
-* Orphaned roles
-
+### Security Administration
 | name              | description                                                                  |
 | ----------------- | ---------------------------------------------------------------------------- |
 | orphaned_roles    | Returns a list of orphaned roles                                             |
 | scim_token_expiry | Alerts a configurable numbers of days has past since the last token creation |
 
-**Snowflake Security Practices**
+### Snowflake Security Practices
 
 | name                               | description                                                                                                                                                                                                                                                                                                                               |
 | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
