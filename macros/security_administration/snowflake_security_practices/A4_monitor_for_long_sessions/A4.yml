@@ -6,6 +6,12 @@ macros:
     description: "Monitor for client applications that are keeping sessions open longer than desired by policy"
     docs:
       show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "Sessions longer than policy detected"
+      message_type: "security"
+      environment: "N/A"
     arguments:
       - name: time_filter
         type: integer

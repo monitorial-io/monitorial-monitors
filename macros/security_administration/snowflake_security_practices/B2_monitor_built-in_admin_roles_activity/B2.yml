@@ -6,6 +6,12 @@ macros:
     description: "Monitor for all instances of a user using the default Snowflake admin roles to ensure their use is appropriate"
     docs:
       show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "Inappropriate use of Admin roles detected"
+      message_type: "security"
+      environment: "N/A"
     arguments:
       - name: admin_roles
         type: List[string]

@@ -5,6 +5,12 @@ macros:
     description: "Blocked ip address login failures (this requires Network Policies to be configured)"
     docs:
       show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "logins from blocked ip addresses detected"
+      message_type: "security"
+      environment: "N/A"
     arguments:
       - name: time_filter
         type: integer
@@ -14,6 +20,12 @@ macros:
     description: "Count of login failures by ip address"
     docs:
       show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "logins from blocked ip addresses detected"
+      message_type: "security"
+      environment: "N/A"
     arguments:
       - name: time_filter
         type: integer
@@ -23,6 +35,12 @@ macros:
     description: "Blocked ip address login failures aggregated by username, ip address, driver and authentication type (this requires Network Policies to be configured)"
     docs:
       show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "logins from blocked ip addresses detected"
+      message_type: "security"
+      environment: "N/A"
     arguments:
       - name: time_filter
         type: integer

@@ -6,6 +6,12 @@ macros:
       authentication methods.  Users who have key pair authentication should be using it exclusively"
     docs:
       show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "User with key pair using other forms of authenication detected"
+      message_type: "administration"
+      environment: "N/A"
     arguments:
       - name: time_filter
         type: integer
@@ -16,6 +22,12 @@ macros:
         After users successfully authenticate using key/pair, they should not be using passwords"
     docs:
       show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "User with key pair using password authenication detected"
+      message_type: "administration"
+      environment: "N/A"
     arguments:
       - name: time_filter
         type: integer

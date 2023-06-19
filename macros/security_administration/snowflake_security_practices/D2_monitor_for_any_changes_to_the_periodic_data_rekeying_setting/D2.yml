@@ -5,6 +5,12 @@ macros:
     description: "Checks that automatic data rekeying is turned on to provide additional data security"
     docs:
       show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "Periodic re-keying isn't enabled"
+      message_type: "security"
+      environment: "N/A"  
     arguments:
       - name: time_filter
         type: integer
@@ -14,6 +20,12 @@ macros:
     description: "Changes to this setting are rare and deserving of scrutiny"
     docs:
       show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "Changes to periodic re-keying detected"
+      message_type: "security"
+      environment: "N/A"  
     arguments:
       - name: time_filter
         type: integer

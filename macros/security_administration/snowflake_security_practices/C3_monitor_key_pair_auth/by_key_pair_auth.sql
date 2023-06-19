@@ -3,8 +3,7 @@ select
     event_timestamp,
     user_name,
     client_ip,
-    reported_client_type
-        as reported_client_version,
+    reported_client_type as reported_client_version,
     first_authentication_factor,
     second_authentication_factor
 from 

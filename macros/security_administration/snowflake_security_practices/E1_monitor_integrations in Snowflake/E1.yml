@@ -5,6 +5,12 @@ macros:
     description: "Because integrations can enable a new means of access to Snowflake data, closely monitor for new integrations or the modification of existing integrations"
     docs:
       show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "Changes to Integrations detected"
+      message_type: "security"
+      environment: "N/A"  
     arguments:
       - name: time_filter
         type: integer

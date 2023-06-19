@@ -5,6 +5,12 @@ macros:
     description: "Monitors occurrences of altered users"
     docs:
       show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "Altered users detected"
+      message_type: "security"
+      environment: "N/A"
     arguments:
       - name: time_filter
         type: integer
@@ -14,6 +20,12 @@ macros:
     description: "Monitors occurrences of altered users key pair auth removal"
     docs:
       show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "Altered users key pair auth removal detected"
+      message_type: "security"
+      environment: "N/A"
     arguments:
       - name: time_filter
         type: integer
@@ -23,6 +35,12 @@ macros:
     description: "Monitors occurrences of altered users mfa bypass time period"
     docs:
       show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "Altered users mfa bypass detected"
+      message_type: "security"
+      environment: "N/A"
     arguments:
       - name: time_filter
         type: integer

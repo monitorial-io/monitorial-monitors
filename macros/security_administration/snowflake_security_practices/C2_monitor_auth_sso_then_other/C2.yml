@@ -6,6 +6,12 @@ macros:
         After users successfully authenticate using SSO, they should not be using other methods"
     docs:
       show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "Users with SSO and not using it detected"
+      message_type: "security"
+      environment: "N/A"
     arguments:
       - name: time_filter
         type: integer

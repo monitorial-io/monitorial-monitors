@@ -5,6 +5,12 @@ macros:
     description: "Monitors the number of times each user authenticated and the authentication method they used"
     docs:
       show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "info"
+      message: "User and auth methods report"
+      message_type: "security"
+      environment: "N/A"
     arguments:
       - name: time_filter
         type: integer

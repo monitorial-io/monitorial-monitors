@@ -6,4 +6,10 @@ macros:
     description: "Monitors for the presence of network policy"
     docs:
       show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "No Network Policy detected"
+      message_type: "security"
+      environment: "N/A"
     

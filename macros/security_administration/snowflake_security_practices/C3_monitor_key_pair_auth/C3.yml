@@ -5,6 +5,12 @@ macros:
     description: "Monitor the use of key pair authentication by querying login attempt"
     docs:
       show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "info"
+      message: "key pair auth report"
+      message_type: "administration"
+      environment: "N/A"
     arguments:
       - name: time_filter
         type: integer
@@ -15,6 +21,12 @@ macros:
       authentication methods.  Users who have key pair authentication should be using it exclusively"
     docs:
       show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "User with key pair and password detected"
+      message_type: "administration"
+      environment: "N/A"
     arguments:
       - name: time_filter
         type: integer

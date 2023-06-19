@@ -5,6 +5,12 @@ macros:
     description: "Returns a list of orphaned roles"
     docs:
       show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "Orphaned Roles detected"
+      message_type: "security"
+      environment: "N/A"  
     arguments:
       - name: exception_list
         type: List[string]
@@ -14,6 +20,12 @@ macros:
     description: Alerts a configurable numbers of days has past since the last token creation
     docs:
       show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "info"
+      message: "SCIM Access Token is due to expire soon"
+      message_type: "security"
+      environment: "N/A"  
     arguments:
       - name: warn_after_days
         type: integer

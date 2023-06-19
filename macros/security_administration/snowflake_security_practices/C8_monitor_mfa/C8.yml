@@ -5,6 +5,12 @@ macros:
     description: "Multi factor authentication stats"
     docs:
       show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "info"
+      message: "Logins without MFA stats"
+      message_type: "security"
+      environment: "N/A"  
     arguments:
       - name: time_filter
         type: integer
@@ -14,6 +20,12 @@ macros:
     description: "Most recent logins with password when MFA is enabled"
     docs:
       show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "Logins with password detected"
+      message_type: "security"
+      environment: "N/A"  
     arguments:
       - name: time_filter
         type: integer

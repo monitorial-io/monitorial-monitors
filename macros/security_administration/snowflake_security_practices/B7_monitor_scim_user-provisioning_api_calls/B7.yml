@@ -7,6 +7,12 @@ macros:
        https://docs.snowflake.com/en/user-guide/scim-intro#auditing-with-scim"
     docs:
       show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "info"
+      message: "SCIM API calls"
+      message_type: "security"
+      environment: "N/A"
     arguments:
       - name: number_requests
         type: integer

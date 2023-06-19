@@ -8,6 +8,12 @@ macros:
                   appropriate users"
     docs:
       show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "Privileges granted from un designated roles detected"
+      message_type: "security"
+      environment: "N/A"
     arguments:
       - name: authorized_role_names
         type: List[string]
