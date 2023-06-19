@@ -32,9 +32,20 @@ to contribute to this project please fork the repository and submit a pull reque
 
 ### Snowflake Security Features Checklist
 #### A1 Verify connections logging in from specific networks
+Understanding when and where connections are being attempted to your Snowflake instance from blocked IP address ranges is an important first line defence in keeping you safe.
+
 * blocked IP address login events
 * blocked IP address login aggregate
 * login failures by ip address
+
+#### A2 Monitor changes to Network Policies
+Understanding if someone or something has changed your Network Policies is vital.
+Most of the time these changes will be intended, but what if they are not?
+* changes to network policies
+
+#### A3 Monitor Network Policies exist
+This is a light-weight version 
+* Network policies exist
 
 ### Admin
 * Scim token expiry
