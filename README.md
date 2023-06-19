@@ -6,7 +6,7 @@ This repository is an open source project that aims to provide a scripts which c
 Add the following to your packages.yml file
 ```
   - git: https://github.com/monitorial-io/monitorial-monitors.git
-    revision: "0.0.3-beta"
+    revision: "1.0.0"
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ the project namespace for this package is `dbt_monitorialio_monitors` and can be
 ```
 for example
 ```
-{{ dbt_monitorialio_monitors.failed_logins(hours=1) }}
+{{ dbt_monitorialio_monitors.failed_logins(time_filter=1400) }}
 ```
 
 ## Contributing
@@ -25,8 +25,10 @@ to contribute to this project please fork the repository and submit a pull reque
 
 ## Available Macros
 
+### Snowflake Security Features Checklist
+
 ### Admin
-* Failed Logins
+* Scim token expiry
 * Orphaned roles
 
 ### Performance
