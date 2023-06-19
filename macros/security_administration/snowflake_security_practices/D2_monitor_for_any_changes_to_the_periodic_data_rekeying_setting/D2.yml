@@ -10,7 +10,7 @@ macros:
       severity: "warning"
       message: "Periodic re-keying isn't enabled"
       message_type: "security"
-      environment: "N/A"  
+      environment: "account"  
     arguments:
       - name: time_filter
         type: integer
@@ -25,7 +25,7 @@ macros:
       severity: "warning"
       message: "Changes to periodic re-keying detected"
       message_type: "security"
-      environment: "N/A"  
+      environment: "account"  
     arguments:
       - name: time_filter
         type: integer

@@ -12,7 +12,7 @@ macros:
       severity: "info"
       message: "SCIM API calls"
       message_type: "security"
-      environment: "N/A"
+      environment: "account"
     arguments:
       - name: number_requests
         type: integer

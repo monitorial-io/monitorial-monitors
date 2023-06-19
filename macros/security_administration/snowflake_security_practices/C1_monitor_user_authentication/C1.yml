@@ -10,7 +10,7 @@ macros:
       severity: "info"
       message: "User and auth methods report"
       message_type: "security"
-      environment: "N/A"
+      environment: "account"
     arguments:
       - name: time_filter
         type: integer

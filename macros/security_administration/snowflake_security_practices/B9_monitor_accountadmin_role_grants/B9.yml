@@ -10,7 +10,7 @@ macros:
       severity: "warning"
       message: "New user assigned to ACCOUNTADMIN role detected"
       message_type: "security"
-      environment: "N/A"
+      environment: "account"
     arguments:
       - name: time_filter
         type: integer

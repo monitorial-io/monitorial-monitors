@@ -10,7 +10,7 @@ macros:
       severity: "warning"
       message: "Previously disabled user re-enabled detected"
       message_type: "security"
-      environment: "N/A"
+      environment: "account"
     arguments:
       - name: time_filter
         type: integer

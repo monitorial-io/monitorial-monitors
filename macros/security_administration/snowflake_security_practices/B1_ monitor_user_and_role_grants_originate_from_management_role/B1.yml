@@ -13,7 +13,7 @@ macros:
       severity: "warning"
       message: "Privileges granted from un designated roles detected"
       message_type: "security"
-      environment: "N/A"
+      environment: "account"
     arguments:
       - name: authorized_role_names
         type: List[string]

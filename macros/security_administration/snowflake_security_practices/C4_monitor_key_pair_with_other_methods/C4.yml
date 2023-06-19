@@ -11,7 +11,7 @@ macros:
       severity: "warning"
       message: "User with key pair using other forms of authenication detected"
       message_type: "administration"
-      environment: "N/A"
+      environment: "account"
     arguments:
       - name: time_filter
         type: integer
@@ -27,7 +27,7 @@ macros:
       severity: "warning"
       message: "User with key pair using password authenication detected"
       message_type: "administration"
-      environment: "N/A"
+      environment: "account"
     arguments:
       - name: time_filter
         type: integer
