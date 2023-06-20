@@ -1,4 +1,4 @@
-{% macro login_from_blocked_ip_address (time_filter=1440) -%}
+{% macro blocked_ip_address_events (time_filter=1440) -%}
 select 
     event_timestamp, 
     user_name, client_ip, 
