@@ -17,7 +17,8 @@ macros:
         description: "The number of minutes to look back for query execution; default = 5"
 
   - name: rbar_detection
-    description: "Detect row-by-row processing queries repeatedly executed within the same session as these are a high priority for tuning."
+    description: "Detect row-by-row processing queries repeatedly executed within the same session as these are a high priority for tuning.
+    Ref:  https://www.analytics.today/blog/top-3-snowflake-performance-tuning-tactics"
     docs:
       show: true
     monitorial_defaults:
