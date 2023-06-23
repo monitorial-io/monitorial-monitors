@@ -2,10 +2,38 @@ version: 2
 
 macros:
   - name: long_running_queries
-    description: "Returns a list of queries that have been running for more than the specified timeframe"
+    description: "Returns a list of queries that have been running for more than the specified time frame"
     docs:
       show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "Long running queries detected"
+      message_type: "performance"
+      environment: "account"
     arguments:
       - name: minutes
         type: integer
-        description: "The number of minutes to look back for query execution (default is 5)"
+        description: "The number of minutes to look back for query execution; default = 5"
+
+  - name: rbar_detection
+    description: "Detect row-by-row processing queries repeatedly executed within the same session as these are a high priority for tuning.
+    Ref:  https://www.analytics.today/blog/top-3-snowflake-performance-tuning-tactics"
+    docs:
+      show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "High volume row by row queries in same session"
+      message_type: "performance"
+      environment: "account"
+    arguments:
+      - name: query_types
+        type: List[string]
+        description: "The list of query types monitored;  default = SELECT, INSERT, UPDATE, MERGE"
+      - name: query_count_greater_than
+        type: integer
+        description: "The lower boundary of query occurrences to alert on; default = 10"
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window; default = 1440 (1 day)"
