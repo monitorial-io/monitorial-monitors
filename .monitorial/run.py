@@ -13,6 +13,7 @@ def write_file(path, contents):
         f.write(contents)
 
 def get_default_value(macro_name, argument_name, contents):
+
     lines  = contents.split("\n")
     name = f"{{% macro {macro_name}"
     for line in lines:
@@ -24,7 +25,6 @@ def get_default_value(macro_name, argument_name, contents):
             else:
                 data = line.replace(name, "").replace("-%}", "").replace("(", "").replace(")", "").split(",")
 
-
             for item in data:
                 if item.strip().startswith(argument_name):
                     if("=" not in item):
@@ -33,8 +33,22 @@ def get_default_value(macro_name, argument_name, contents):
                         defaultValue = item.strip().split("=")[1].strip()
                         if defaultValue.startswith("["):
                             defaultValue = f"{defaultValue}]"
+                        elif "," in defaultValue:
+                                defaultValue = defaultValue.strip().split(",")[0].strip()
 
                         return defaultValue
+                elif argument_name in item:
+                    new_data = item.split(",")
+                    for new_item in new_data:
+                        if new_item.strip().startswith(argument_name):
+                            if("=" not in new_item):
+                                return ""
+                            else:
+                                defaultValue = new_item.strip().split("=")[1].strip()
+                                if defaultValue.startswith("["):
+                                    defaultValue = f"{defaultValue}]"
+
+                                return defaultValue
             break
 
     return ""

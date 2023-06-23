@@ -55,9 +55,10 @@ macros:
 ## Available Macros
 ### Performance
 
-| name                 | description                                                                            |
-| -------------------- | -------------------------------------------------------------------------------------- |
-| long_running_queries | Returns a list of queries that have been running for more than the specified timeframe |
+| name                 | description                                                                                                                                                                                                 |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| long_running_queries | Returns a list of queries that have been running for more than the specified timeframe                                                                                                                      |
+| rbar_detection       | Detect row-by-row processing queries repeatedly executed within the same session as these are a high priority for tuning. Ref:  https://www.analytics.today/blog/top-3-snowflake-performance-tuning-tactics |
 
 ### Security Administration
 | name              | description                                                                  |
