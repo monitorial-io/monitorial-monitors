@@ -1,0 +1,98 @@
+version: 2
+
+macros:
+  - name: pipe_channel_error
+    description: "Returns a list of pipes which have a channel error"
+    docs:
+      show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "error"
+      message: "Snowpipe Channel Error"
+      message_type: "freshness"
+      environment: "prod"
+    arguments:
+      - name: database
+        type: string
+        description: "The database to check for pipes with channel errors"
+      - name: schema
+        type: string
+        description: "The schema to check for pipes with channel errors"
+      - name: pipe_names
+        type: List[string]
+        description: "List of pipes to check for channel errors"
+
+  - name: pipe_freshness
+    description: Returns a list of pipes which have not been updated within a given time period
+    docs:
+      show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "Snowpipe Freshness Failure"
+      message_type: "freshness"
+      environment: "prod"
+    arguments:
+      - name: database
+        type: string
+        description: "The database to check for pipes for freshness"
+      - name: schema
+        type: string
+        description: "The schema to check for pipes for freshness"
+      - name: pipe_names
+        type: List[string]
+        description: "List of pipes to check for freshness"
+      - name: freshness_threshold
+        type: integer
+        description: "The number of hours since the last update before a pipe is considered stale"
+
+  - name: pipe_outstanding_messages
+    description: Returns a list of pipes which have a backlog of messages
+    docs:
+      show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "info"
+      message: "Snowpipe Oustanding Messages"
+      message_type: "freshness"
+      environment: "prod"
+    arguments:
+      - name: database
+        type: string
+        description: "The database to check for pipes for freshness"
+      - name: schema
+        type: string
+        description: "The schema to check for pipes for freshness"
+      - name: pipe_names
+        type: List[string]
+        description: "List of pipes to check for freshness"
+      - name: freshness_threshold
+        type: integer
+        description: "The number of hours since the last update before a pipe is considered stale"
+      - name: max_outstanding_messages
+        type: integer
+        description: "The maximum number of outstanding messages before a pipe is considered to have a backlog"
+
+  - name: pipe_status
+    description: Returns a list of pipes which have a status other than those defined
+    docs:
+      show: true
+    monitorial_defaults:
+      schedule: "* 6 * * *"
+      severity: "warning"
+      message: "Snowpipe Status Issues"
+      message_type: "freshness"
+      environment: "prod"
+    arguments:
+      - name: database
+        type: string
+        description: "The database to check for pipes for freshness"
+      - name: schema
+        type: string
+        description: "The schema to check for pipes for freshness"
+      - name: pipe_names
+        type: List[string]
+        description: "List of pipes to check for freshness"
+      - name: exception_list
+        type: List[string]
+        description: "The list of states to exclude from the check. default is: RUNNING, PAUSED, STOPPED_CLONED "
