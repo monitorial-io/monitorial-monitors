@@ -6,7 +6,7 @@ macros:
     docs:
       show: true
     monitorial_defaults:
-      schedule: "* 6 * * *"
+      schedule: "0 6 * * *"
       severity: "warning"
       message: "Long running queries detected"
       message_type: "performance"
@@ -22,7 +22,7 @@ macros:
     docs:
       show: true
     monitorial_defaults:
-      schedule: "* 6 * * *"
+      schedule: "0 6 * * *"
       severity: "warning"
       message: "High volume row by row queries in same session"
       message_type: "performance"

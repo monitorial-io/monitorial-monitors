@@ -9,7 +9,7 @@ macros:
     docs:
       show: true
     monitorial_defaults:
-      schedule: "* 6 * * *"
+      schedule: "0 6 * * *"
       severity: "warning"
       message: "Concurrent failed logins detected"
       message_type: "security"
@@ -30,7 +30,7 @@ macros:
     docs:
       show: true
     monitorial_defaults:
-      schedule: "* 6 * * *"
+      schedule: "0 6 * * *"
       severity: "info"
       message: "Failed logins detected"
       message_type: "security"

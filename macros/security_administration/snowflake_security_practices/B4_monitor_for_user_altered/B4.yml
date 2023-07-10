@@ -6,7 +6,7 @@ macros:
     docs:
       show: true
     monitorial_defaults:
-      schedule: "* 6 * * *"
+      schedule: "0 6 * * *"
       severity: "warning"
       message: "Altered users detected"
       message_type: "security"
@@ -21,7 +21,7 @@ macros:
     docs:
       show: true
     monitorial_defaults:
-      schedule: "* 6 * * *"
+      schedule: "0 6 * * *"
       severity: "warning"
       message: "Altered users key pair auth removal detected"
       message_type: "security"
@@ -36,7 +36,7 @@ macros:
     docs:
       show: true
     monitorial_defaults:
-      schedule: "* 6 * * *"
+      schedule: "0 6 * * *"
       severity: "warning"
       message: "Altered users mfa bypass detected"
       message_type: "security"

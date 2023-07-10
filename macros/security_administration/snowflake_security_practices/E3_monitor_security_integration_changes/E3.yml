@@ -6,7 +6,7 @@ macros:
     docs:
       show: true
     monitorial_defaults:
-      schedule: "* 6 * * *"
+      schedule: "0 6 * * *"
       severity: "warning"
       message: "Changes to Security Integration detected"
       message_type: "security"

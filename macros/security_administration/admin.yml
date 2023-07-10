@@ -6,7 +6,7 @@ macros:
     docs:
       show: true
     monitorial_defaults:
-      schedule: "* 6 * * *"
+      schedule: "0 6 * * *"
       severity: "warning"
       message: "Orphaned Roles detected"
       message_type: "security"
@@ -21,7 +21,7 @@ macros:
     docs:
       show: true
     monitorial_defaults:
-      schedule: "* 6 * * *"
+      schedule: "0 6 * * *"
       severity: "info"
       message: "SCIM Access Token is due to expire soon"
       message_type: "security"
