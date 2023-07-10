@@ -2,7 +2,9 @@
 select
     user_name,
     role_name,
-    query_text
+    query_text,
+    start_time,
+    end_time
 from 
     snowflake.account_usage.query_history 
 where
