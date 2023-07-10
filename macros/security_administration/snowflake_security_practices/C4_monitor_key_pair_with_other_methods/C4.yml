@@ -7,7 +7,7 @@ macros:
     docs:
       show: true
     monitorial_defaults:
-      schedule: "* 6 * * *"
+      schedule: "0 6 * * *"
       severity: "warning"
       message: "User with key pair using other forms of authenication detected"
       message_type: "administration"
@@ -23,7 +23,7 @@ macros:
     docs:
       show: true
     monitorial_defaults:
-      schedule: "* 6 * * *"
+      schedule: "0 6 * * *"
       severity: "warning"
       message: "User with key pair using password authenication detected"
       message_type: "administration"
