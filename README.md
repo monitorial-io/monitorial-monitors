@@ -36,6 +36,7 @@ macros:
     description: <<description of your macro>>
     docs:
       show: true
+    monitorial_version: 1.0.0
     monitorial_defaults:
       schedule: <<CRON schedule this should be run on>>
       severity: "<<severity level to be associated when a result is returned>>"
@@ -105,3 +106,12 @@ macros:
 | periodic_rekey_changes             | Changes to this setting are rare and deserving of scrutiny                                                                                                                                                                                                                                                                                |
 | integration_object_changes         | Because integrations can enable a new means of access to Snowflake data, closely monitor for new integrations or the modification of existing integrations                                                                                                                                                                                |
 | security_integration_changes       | Because security integrations can enable a new means of access to Snowflake data, closely monitor for new integrations or the modification of existing security integrations                                                                                                                                                              |
+
+### Testing
+
+| name                      | description                                                                    |
+| ------------------------- | ------------------------------------------------------------------------------ |
+| pipe_channel_error        | Returns a list of pipes which have a channel error                             |
+| pipe_freshness            | Returns a list of pipes which have not been updated within a given time period |
+| pipe_outstanding_messages | Returns a list of pipes which have a backlog of messages                       |
+| pipe_status               | Returns a list of pipes which have a status other than those defined           |
