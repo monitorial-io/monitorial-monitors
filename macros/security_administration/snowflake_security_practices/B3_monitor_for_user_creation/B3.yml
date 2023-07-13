@@ -6,6 +6,7 @@ macros:
     description: "Monitors for the creation of users"
     docs:
       show: true
+    monitorial_version: 1
     monitorial_defaults:
       schedule: "0 6 * * *"
       severity: "warning"
@@ -22,6 +23,7 @@ macros:
     description: "Monitors for user creation by non admin roles"
     docs:
       show: true
+    monitorial_version: 1
     monitorial_defaults:
       schedule: "0 6 * * *"
       severity: "warning"

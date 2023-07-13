@@ -5,6 +5,7 @@ macros:
     description: "Monitor the use of key pair authentication by querying login attempt"
     docs:
       show: true
+    monitorial_version: 1
     monitorial_defaults:
       schedule: "0 6 * * *"
       severity: "info"
@@ -21,6 +22,7 @@ macros:
       authentication methods.  Users who have key pair authentication should be using it exclusively"
     docs:
       show: true
+    monitorial_version: 1
     monitorial_defaults:
       schedule: "0 6 * * *"
       severity: "warning"

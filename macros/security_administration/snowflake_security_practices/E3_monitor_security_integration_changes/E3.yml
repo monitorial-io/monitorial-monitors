@@ -5,6 +5,7 @@ macros:
     description: "Because security integrations can enable a new means of access to Snowflake data, closely monitor for new integrations or the modification of existing security integrations"
     docs:
       show: true
+    monitorial_version: 1
     monitorial_defaults:
       schedule: "0 6 * * *"
       severity: "warning"

@@ -5,6 +5,7 @@ macros:
     description: "Checks that automatic data rekeying is turned on to provide additional data security"
     docs:
       show: true
+    monitorial_version: 1
     monitorial_defaults:
       schedule: "0 6 * * *"
       severity: "warning"
@@ -20,6 +21,7 @@ macros:
     description: "Changes to this setting are rare and deserving of scrutiny"
     docs:
       show: true
+    monitorial_version: 1
     monitorial_defaults:
       schedule: "0 6 * * *"
       severity: "warning"

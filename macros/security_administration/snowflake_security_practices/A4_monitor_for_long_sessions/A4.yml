@@ -6,6 +6,7 @@ macros:
     description: "Monitor for client applications that are keeping sessions open longer than desired by policy"
     docs:
       show: true
+    monitorial_version: 1
     monitorial_defaults:
       schedule: "0 6 * * *"
       severity: "warning"

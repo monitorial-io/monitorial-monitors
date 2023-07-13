@@ -6,6 +6,7 @@ macros:
         After users successfully authenticate using SSO, they should not be using other methods"
     docs:
       show: true
+    monitorial_version: 1
     monitorial_defaults:
       schedule: "0 6 * * *"
       severity: "warning"

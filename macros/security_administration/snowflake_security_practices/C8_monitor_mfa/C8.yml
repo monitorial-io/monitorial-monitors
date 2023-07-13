@@ -5,6 +5,7 @@ macros:
     description: "Multi factor authentication stats"
     docs:
       show: true
+    monitorial_version: 1
     monitorial_defaults:
       schedule: "0 6 * * *"
       severity: "info"
@@ -20,6 +21,7 @@ macros:
     description: "Most recent logins with password when MFA is enabled"
     docs:
       show: true
+    monitorial_version: 1
     monitorial_defaults:
       schedule: "0 6 * * *"
       severity: "warning"

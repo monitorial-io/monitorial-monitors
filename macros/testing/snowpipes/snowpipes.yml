@@ -5,8 +5,9 @@ macros:
     description: "Returns a list of pipes which have a channel error"
     docs:
       show: true
+    monitorial_version: 1
     monitorial_defaults:
-      schedule: "* 6 * * *"
+      schedule: "5 9-5 * * *"
       severity: "error"
       message: "Snowpipe Channel Error"
       message_type: "freshness"
@@ -26,8 +27,9 @@ macros:
     description: Returns a list of pipes which have not been updated within a given time period
     docs:
       show: true
+    monitorial_version: 1
     monitorial_defaults:
-      schedule: "* 6 * * *"
+      schedule: "5 9-5 * * *"
       severity: "warning"
       message: "Snowpipe Freshness Failure"
       message_type: "freshness"
@@ -50,8 +52,9 @@ macros:
     description: Returns a list of pipes which have a backlog of messages
     docs:
       show: true
+    monitorial_version: 1
     monitorial_defaults:
-      schedule: "* 6 * * *"
+      schedule: "5 9-5 * * *"
       severity: "info"
       message: "Snowpipe Oustanding Messages"
       message_type: "freshness"
@@ -77,8 +80,9 @@ macros:
     description: Returns a list of pipes which have a status other than those defined
     docs:
       show: true
+    monitorial_version: 1
     monitorial_defaults:
-      schedule: "* 6 * * *"
+      schedule: "5 9-5 * * *"
       severity: "warning"
       message: "Snowpipe Status Issues"
       message_type: "freshness"

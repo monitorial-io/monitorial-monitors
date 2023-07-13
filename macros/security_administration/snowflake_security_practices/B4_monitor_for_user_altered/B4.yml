@@ -5,6 +5,7 @@ macros:
     description: "Monitors occurrences of altered users"
     docs:
       show: true
+    monitorial_version: 1
     monitorial_defaults:
       schedule: "0 6 * * *"
       severity: "warning"
@@ -20,6 +21,7 @@ macros:
     description: "Monitors occurrences of altered users key pair auth removal"
     docs:
       show: true
+    monitorial_version: 1
     monitorial_defaults:
       schedule: "0 6 * * *"
       severity: "warning"
@@ -35,6 +37,7 @@ macros:
     description: "Monitors occurrences of altered users mfa bypass time period"
     docs:
       show: true
+    monitorial_version: 1
     monitorial_defaults:
       schedule: "0 6 * * *"
       severity: "warning"

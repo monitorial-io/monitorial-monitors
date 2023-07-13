@@ -5,6 +5,7 @@ macros:
     description: "Monitors the number of times each user authenticated and the authentication method they used"
     docs:
       show: true
+    monitorial_version: 1
     monitorial_defaults:
       schedule: "0 6 * * *"
       severity: "info"

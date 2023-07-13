@@ -7,6 +7,7 @@ macros:
        https://docs.snowflake.com/en/user-guide/scim-intro#auditing-with-scim"
     docs:
       show: true
+    monitorial_version: 1
     monitorial_defaults:
       schedule: "0 6 * * *"
       severity: "info"

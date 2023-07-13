@@ -6,6 +6,7 @@ macros:
     description: "Monitor changes to Network Policies and associated objects"
     docs:
       show: true
+    monitorial_version: 1
     monitorial_defaults:
       schedule: "0 6 * * *"
       severity: "warning"

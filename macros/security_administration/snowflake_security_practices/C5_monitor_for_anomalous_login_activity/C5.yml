@@ -5,6 +5,7 @@ macros:
     description: "Identifying Users who login frequently can help spot anomalies or unexpected behavior"
     docs:
       show: true
+    monitorial_version: 1
     monitorial_defaults:
       schedule: "0 6 * * *"
       severity: "warning"
