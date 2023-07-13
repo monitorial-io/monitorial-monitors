@@ -35,6 +35,7 @@ class macro_details():
     grouping:str = ""
     name:str
     description:str
+    version:int = 1
     arguments:List[macro_argument] = []
     contents:str = ""
     prerequisits:List[str] = []
@@ -49,6 +50,7 @@ class macro_details():
     def __init__(self) -> None:
         self.classification = ""
         self.message_type = ""
+        self.version= 1
         self.schedule = ""
         self.severity = ""
         self.message = ""
@@ -77,6 +79,7 @@ class macro_details():
         data["classification"] = self.classification
         data["grouping"] = self.grouping
         data["description"] = self.description
+        data["version"] = self.version
        
         data["macro"] = {}
         data["macro"]["contents"] = self.contents
