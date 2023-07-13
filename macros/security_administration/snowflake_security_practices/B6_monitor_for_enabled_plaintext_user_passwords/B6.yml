@@ -5,7 +5,7 @@ macros:
     description: "Monitor for the enablement of plaintext user passwords"
     docs:
       show: true
-    monitorial_version: 1
+    monitorial_version: 1.0.0
     monitorial_defaults:
       schedule: "0 6 * * *"
       severity: "warning"

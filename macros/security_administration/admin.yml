@@ -5,7 +5,7 @@ macros:
     description: "Returns a list of orphaned roles"
     docs:
       show: true
-    monitorial_version: 1
+    monitorial_version: 1.0.0
     monitorial_defaults:
       schedule: "0 6 * * *"
       severity: "warning"
@@ -21,7 +21,7 @@ macros:
     description: Alerts a configurable numbers of days has past since the last token creation
     docs:
       show: true
-    monitorial_version: 1
+    monitorial_version: 1.0.0
     monitorial_defaults:
       schedule: "0 6 * * *"
       severity: "info"

@@ -5,7 +5,7 @@ macros:
     description: "Blocked ip address login failures (this requires Network Policies to be configured)"
     docs:
       show: true
-    monitorial_version: 1
+    monitorial_version: 1.0.0
     monitorial_defaults:
       schedule: "0 6 * * *"
       severity: "warning"
@@ -21,7 +21,7 @@ macros:
     description: "Count of login failures by ip address"
     docs:
       show: true
-    monitorial_version: 1
+    monitorial_version: 1.0.0
     monitorial_defaults:
       schedule: "0 6 * * *"
       severity: "warning"
@@ -37,7 +37,7 @@ macros:
     description: "Blocked ip address login failures aggregated by username, ip address, driver and authentication type (this requires Network Policies to be configured)"
     docs:
       show: true
-    monitorial_version: 1
+    monitorial_version: 1.0.0
     monitorial_defaults:
       schedule: "0 6 * * *"
       severity: "warning"

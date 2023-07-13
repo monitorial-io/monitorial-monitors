@@ -6,7 +6,7 @@ macros:
       has the public role granted to them. Monitor QUERY_HISTORY for alterations or grants to the public role"
     docs:
       show: true
-    monitorial_version: 1
+    monitorial_version: 1.0.0
     monitorial_defaults:
       schedule: "0 6 * * *"
       severity: "warning"

@@ -6,7 +6,7 @@ macros:
       authentication methods.  Users who have key pair authentication should be using it exclusively"
     docs:
       show: true
-    monitorial_version: 1
+    monitorial_version: 1.0.0
     monitorial_defaults:
       schedule: "0 6 * * *"
       severity: "warning"
@@ -23,7 +23,7 @@ macros:
         After users successfully authenticate using key/pair, they should not be using passwords"
     docs:
       show: true
-    monitorial_version: 1
+    monitorial_version: 1.0.0
     monitorial_defaults:
       schedule: "0 6 * * *"
       severity: "warning"
