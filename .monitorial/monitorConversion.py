@@ -21,43 +21,33 @@ def get_folder_items(path, macros:List[macro_details]):
             get_folder_items(f"{path}\{item}", macros)
 
 
-def get_default_value(macro_name, argument_name, contents):
+def get_default_value(macro_name, argument_name, argument_type, contents):
 
     lines  = contents.split("\n")
     name = f"{{% macro {macro_name}"
     for line in lines:
-        if line.startswith(name):
-            if "]," in line:
-                data = line.replace(name, "").replace("-%}", "").replace("(", "").replace(")", "").split("],")
-            elif "]" in line:
-                data = line.replace(name, "").replace("-%}", "").replace("(", "").replace(")", "").split("]")
+       if line.startswith(name):
+            working_line = line.replace(f"{name}(", "").replace(") -%}", "").replace(" = ", "=")
+            #print(f"{macro_name} - {argument_name} - {working_line}")
+            while working_line.strip().startswith(f"{argument_name},") == False and working_line.strip().startswith(f"{argument_name}=") == False and working_line != argument_name :
+                working_line = working_line[1:]
+
+            if working_line.strip().startswith(f"{argument_name},"):
+                defaultValue = ""
+            elif working_line.strip().startswith(f"{argument_name}="):
+                if argument_type.startswith("List"):
+                    data  =working_line.split("]")[0].strip()
+                    defaultValue = data.split("=")[1]
+                    defaultValue = f"{defaultValue}]"
+                else:
+                    data = working_line.split(",")[0].strip()
+                    defaultValue = data.split("=")[1]
             else:
-                data = line.replace(name, "").replace("-%}", "").replace("(", "").replace(")", "").split(",")
+                defaultValue = ""
 
-            for item in data:
-                if item.strip().startswith(argument_name):
-                    if("=" not in item):
-                        return ""
-                    else:
-                        defaultValue = item.strip().split("=")[1].strip()
-                        if defaultValue.startswith("["):
-                            defaultValue = f"{defaultValue}]"
-                        elif "," in defaultValue:
-                                defaultValue = defaultValue.strip().split(",")[0].strip()
+            return defaultValue
 
-                        return defaultValue
-                elif argument_name in item:
-                    new_data = item.split(",")
-                    for new_item in new_data:
-                        if new_item.strip().startswith(argument_name):
-                            if("=" not in new_item):
-                                return ""
-                            else:
-                                defaultValue = new_item.strip().split("=")[1].strip()
-                                if defaultValue.startswith("["):
-                                    defaultValue = f"{defaultValue}]"
 
-                                return defaultValue
             break
 
     return ""
@@ -137,7 +127,7 @@ def get_file_items(path, macros:List[macro_details]):
                     details.arguments = []
                     if "arguments" in macro:
                         for argument in macro['arguments']:
-                            default = get_default_value(details.name, argument["name"], details.contents)
+                            default = get_default_value(details.name, argument["name"], argument['type'], details.contents)
                             details.arguments.append(macro_argument(argument['name'], argument['description'], argument['type'], default))
 
                     macros.append(details)

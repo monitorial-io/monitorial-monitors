@@ -62,5 +62,5 @@ if __name__ == '__main__':
             if group["name"] == macro.classification:
                 group["macros"] += f"|{macro.name}|{macro.description}|\n"
 
-    for group in groups:
-        print(f"""### {group["name"].replace("_", " ").title()}\n\n{group['macros']}""")
+   #for group in groups:
+    #    print(f"""### {group["name"].replace("_", " ").title()}\n\n{group['macros']}""")
