@@ -3,6 +3,7 @@ version: 2
 macros:
   - name: orphaned_roles
     description: "Returns a list of orphaned roles"
+    description: "Checks to see if there are any orphaned roles in your account excluding those specified. If any are found, a notification will be sent."
     docs:
       show: true
     monitorial_version: 1.0.0
@@ -19,6 +20,7 @@ macros:
 
   - name: scim_token_expiry
     description: Alerts a configurable numbers of days has past since the last token creation
+    description: "Checks to see when the SCIM Access Token was created and sends a notification if its greater than the specified warn_after_days"
     docs:
       show: true
     monitorial_version: 1.0.0

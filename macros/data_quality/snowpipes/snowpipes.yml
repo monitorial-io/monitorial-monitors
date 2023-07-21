@@ -2,7 +2,7 @@ version: 2
 
 macros:
   - name: pipe_channel_error
-    description: "Returns a list of pipes which have a channel error"
+    description: "Checks to see if an error message has been produced when attempting to read messages from the associated Google Cloud Pub/Sub queue or Microsoft Azure Event Grid storage queue. If there is an error then a notification will be sent"
     docs:
       show: true
     monitorial_version: 1.0.0
@@ -18,7 +18,7 @@ macros:
         description: "pipe to check for channel errors"
 
   - name: pipe_freshness
-    description: Returns a list of pipes which have not been updated within a given time period
+    description: Checks to see when the most recent file was loaded successfully by Snowpipe into the destination table. If the file is older than the freshness_threshold then a notification will be sent
     docs:
       show: true
     monitorial_version: 1.0.0
@@ -37,7 +37,7 @@ macros:
         description: "The number of minutes since the last update before a pipe is considered stale"
 
   - name: pipe_outstanding_messages
-    description: Returns a list of pipes which have not been updated within a given time period and have a backlog of messages
+    description: Checks the number of messages in the queue that have been queued but not received yet and number of files queued for loading by the pipe. If either of these values exceed the threshold then a notification will be sent
     docs:
       show: true
     monitorial_version: 1.0.0
@@ -56,7 +56,7 @@ macros:
         description: "The maximum number of outstanding messages before a pipe is considered to have a backlog"
 
   - name: pipe_status
-    description: Returns a list of pipes which have a status other than those defined
+    description: Checks the current execution state of a pipe. Any status except those in the exception list will trigger an notifictaion to be sent
     docs:
       show: true
     monitorial_version: 1.0.0

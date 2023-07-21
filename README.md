@@ -107,11 +107,22 @@ macros:
 | integration_object_changes         | Because integrations can enable a new means of access to Snowflake data, closely monitor for new integrations or the modification of existing integrations                                                                                                                                                                                |
 | security_integration_changes       | Because security integrations can enable a new means of access to Snowflake data, closely monitor for new integrations or the modification of existing security integrations                                                                                                                                                              |
 
-### Testing
+### Streams
 
-| name                      | description                                                                    |
-| ------------------------- | ------------------------------------------------------------------------------ |
-| pipe_channel_error        | Returns a list of pipes which have a channel error                             |
-| pipe_freshness            | Returns a list of pipes which have not been updated within a given time period |
-| pipe_outstanding_messages | Returns a list of pipes which have a backlog of messages                       |
-| pipe_status               | Returns a list of pipes which have a status other than those defined           |
+| name                  | description                                                               |
+| --------------------- | ------------------------------------------------------------------------- |
+| streams_invalid       | Returns a list of streams where the stream cannot be queried successfully |
+| streams_invalid_table | Returns a list of streams where the base tables are no longer valid       |
+| streams_stale         | Returns a list of streams which are currently stale                       |
+| streams_stale_after   | Returns a list of streams which are may become stale if not consumed      |
+
+### Data Quality
+
+| name                      | description                                                                                                                                                                                                                            |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| pipe_channel_error        | Checks to see if an error message has been produced when attempting to read messages from the associated Google Cloud Pub/Sub queue or Microsoft Azure Event Grid storage queue. If there is an error then a notification will be sent |
+| pipe_freshness            | Checks to see when the most recent file was loaded successfully by Snowpipe into the destination table. If the file is older than the freshness_threshold then a notification will be sent                                             |
+| pipe_outstanding_messages | Checks the number of messages in the queue that have been queued but not received yet and number of files queued for loading by the pipe. If either of these values exceed the threshold then a notification will be sent              |
+| pipe_status               | Checks the current execution state of a pipe. Any status except those in the exception list will trigger an notifictaion to be sent                                                                                                    |                                                                                                                                                             
+| is_not_null               | Checks to see the presence of a null value. If the results contains a null then a notification will be sent                                                                                                                            |
+| source_freshness          | Checks to see when data was retreived last, if the time exeeds the specified expectation then a notification will be sent                                                                                                              |

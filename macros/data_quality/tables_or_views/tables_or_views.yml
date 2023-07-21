@@ -1,0 +1,43 @@
+version: 2
+
+macros:
+  - name: is_not_null
+    description: "Checks to see the presence of a null value. If the results contains a null then a notification will be sent"
+    docs:
+      show: true
+    monitorial_version: 1.0.0
+    monitorial_defaults:
+      schedule: "0 9-17 * * *"
+      severity: "error"
+      message: "Unexpected null value found"
+      message_type: "freshness"
+      environment: "prod"
+    arguments:
+      - name: table_or_view
+        type: string
+        description: "fully qualified table or view name"
+      - name: column
+        type: string
+        description: "column name to check for null values"
+
+  - name: source_freshness
+    description: "Checks to see when data was retreived last, if the time exeeds the specified expectation then a notification will be sent"
+    docs:
+      show: true
+    monitorial_version: 1.0.0
+    monitorial_defaults:
+      schedule: "0 9-17 * * *"
+      severity: "error"
+      message: "Source Freshness issue found"
+      message_type: "freshness"
+      environment: "prod"
+    arguments:
+      - name: table_or_view
+        type: string
+        description: "fully qualified table or view name"
+      - name: column
+        type: string
+        description: "column name to check for null values"
+      - name: freshness_threshold
+        type: integer
+        description: "The number of minutes since the last update before a data is considered stale"
