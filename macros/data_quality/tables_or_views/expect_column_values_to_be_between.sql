@@ -4,6 +4,7 @@ select
     {{ column }},
     min({{ column }}) as min_value,
     max({{ column }}) as min_value,
+    count({{ column }}) as number_records_found
 from {{ table_or_view }}
 where {{ column }} < {{min_value}}
 or {{ column }} > {{max_value}}
