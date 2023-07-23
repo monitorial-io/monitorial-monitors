@@ -1,7 +1,7 @@
 {% macro expect_column_value_lengths_to_equal(table_or_view, column, length, row_condition) -%}
 select
     '{{ table_or_view }}' as source,
-    {{ column }},
+    '{{ column|lower }}' as column_checked,
     min(length({{ column }})) as min_length,
     max(length({{ column }})) as max_length,
     count({{ column }}) as number_records_found
