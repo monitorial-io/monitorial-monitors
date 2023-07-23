@@ -6,13 +6,14 @@ macros:
       authentication methods.  Users who have key pair authentication should be using it exclusively"
     docs:
       show: true
-    monitorial_version: 1.0.0
-    monitorial_defaults:
-      schedule: "0 6 * * *"
-      severity: "warning"
-      message: "User with key pair using other forms of authenication detected"
-      message_type: "administration"
-      environment: "account"
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "User with key pair using other forms of authenication detected"
+        message_type: "administration"
+        environment: "account"
     arguments:
       - name: time_filter
         type: integer
@@ -23,13 +24,14 @@ macros:
         After users successfully authenticate using key/pair, they should not be using passwords"
     docs:
       show: true
-    monitorial_version: 1.0.0
-    monitorial_defaults:
-      schedule: "0 6 * * *"
-      severity: "warning"
-      message: "User with key pair using password authenication detected"
-      message_type: "administration"
-      environment: "account"
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "User with key pair using password authenication detected"
+        message_type: "administration"
+        environment: "account"
     arguments:
       - name: time_filter
         type: integer

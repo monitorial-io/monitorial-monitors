@@ -6,13 +6,14 @@ macros:
     description: "Monitors for the creation of users"
     docs:
       show: true
-    monitorial_version: 1.0.0
-    monitorial_defaults:
-      schedule: "0 6 * * *"
-      severity: "warning"
-      message: "Creation of new user(s) detected"
-      message_type: "security"
-      environment: "account"
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Creation of new user(s) detected"
+        message_type: "security"
+        environment: "account"
     arguments:
       - name: time_filter
         type: integer
@@ -23,13 +24,14 @@ macros:
     description: "Monitors for user creation by non admin roles"
     docs:
       show: true
-    monitorial_version: 1.0.0
-    monitorial_defaults:
-      schedule: "0 6 * * *"
-      severity: "warning"
-      message: "Creation of new user(s) from non Admin roles detected"
-      message_type: "security"
-      environment: "account"
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Creation of new user(s) from non Admin roles detected"
+        message_type: "security"
+        environment: "account"
     arguments:
       - name: executing_role_names
         type: List[string]

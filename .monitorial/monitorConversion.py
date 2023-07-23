@@ -41,7 +41,7 @@ def get_default_value(macro_name, argument_name, argument_type, contents):
                     defaultValue = f"{defaultValue}]"
                 else:
                     data = working_line.split(",")[0].strip()
-                    defaultValue = data.split("=")[1]
+                    defaultValue = data.split("=")[1].replace("\"", "")
             else:
                 defaultValue = ""
 
@@ -99,23 +99,35 @@ def get_file_items(path, macros:List[macro_details]):
                         details.classification = f"{os.path.basename(os.path.dirname(os.path.dirname(path)))}"
                         details.grouping = os.path.basename(os.path.dirname(path))
 
-                    if "monitorial_version" in macro:
-                        details.version = macro['monitorial_version']
-                    else:
-                        details.version = 1
+                    if "monitorial" in macro:
+                        if "version" in macro['monitorial']:
+                            details.version = macro['monitorial']['version']
+                        else:
+                            details.version = "1.0.0"
 
-                    if "monitorial_defaults" in macro:
-                        if 'schedule' in macro['monitorial_defaults']:
-                            details.schedule = macro['monitorial_defaults']['schedule']
-                        if 'severity' in macro['monitorial_defaults']:
-                            details.severity = macro['monitorial_defaults']['severity']
-                        if 'message' in macro['monitorial_defaults']:
-                            details.message = macro['monitorial_defaults']['message']
-                        if 'environment' in macro['monitorial_defaults']:
-                            details.environment = macro['monitorial_defaults']['environment']
-                        if 'message_type' in macro['monitorial_defaults']:
-                            details.message_type = macro['monitorial_defaults']['message_type']
+                        if "defaults" in macro['monitorial']:
+                            if 'schedule' in macro['monitorial']['defaults']:
+                                details.schedule = macro['monitorial']['defaults']['schedule']
+                            if 'severity' in macro['monitorial']['defaults']:
+                                details.severity = macro['monitorial']['defaults']['severity']
+                            if 'message' in macro['monitorial']['defaults']:
+                                details.message = macro['monitorial']['defaults']['message']
+                            if 'environment' in macro['monitorial']['defaults']:
+                                details.environment = macro['monitorial']['defaults']['environment']
+                            if 'message_type' in macro['monitorial']['defaults']:
+                                details.message_type = macro['monitorial']['defaults']['message_type']
+                        else:
+                            details.schedule = "0 8 * * *"
+                            details.severity = "warning"
+                            details.message = "No message provided"
+                            details.environment = "prod"
+                            details.message_type = details.classification
+                            
+                        if "column_filters" in macro['monitorial']:
+                            if "limit_datatypes" in macro['monitorial']['column_filters']:
+                                details.limit_datatypes = macro['monitorial']['column_filters']['limit_datatypes']
                     else:
+                        details.version = "1.0.0"
                         details.schedule = "0 8 * * *"
                         details.severity = "warning"
                         details.message = "No message provided"

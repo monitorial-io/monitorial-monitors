@@ -5,13 +5,14 @@ macros:
     description: "Identifying Users who login frequently can help spot anomalies or unexpected behavior"
     docs:
       show: true
-    monitorial_version: 1.0.0
-    monitorial_defaults:
-      schedule: "0 6 * * *"
-      severity: "warning"
-      message: "Frequently user logins detected"
-      message_type: "administration"
-      environment: "account"    
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Frequently user logins detected"
+        message_type: "administration"
+        environment: "account"    
     arguments:
       - name: time_filter
         type: integer

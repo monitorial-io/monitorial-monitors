@@ -1,8 +1,9 @@
-{% macro source_freshness(table_or_view, column, freshness_threshold=60) -%}
+{% macro source_freshness(table_or_view, column, datepart="minute", freshness_threshold=60) -%}
 select
     '{{ table_or_view }}' as source,
-    {{ column }},
-    datediff(minute,{{ column }},current_timestamp) as minutes_since_last_data
+    '{{ column|lower }}' as column_checked,
+    max({{ column }}) as last_record_dated,
+    convert_timezone('UTC', current_timestamp()) as snapshotted_at
 from {{ table_or_view }}
-where minutes_since_last_data > {{ freshness_threshold }}
+where datediff({{datepart}},{{ column }},current_timestamp) >  {{ freshness_threshold }}
 {%- endmacro %}

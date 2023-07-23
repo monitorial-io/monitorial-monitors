@@ -35,7 +35,7 @@ class macro_details():
     grouping:str = ""
     name:str
     description:str
-    version:int = 1
+    version:str = "1.0.0"
     arguments:List[macro_argument] = []
     contents:str = ""
     prerequisits:List[str] = []
@@ -46,6 +46,7 @@ class macro_details():
     classification:str = ""
     environment:str = ""
     message_type:str = ""
+    limit_datatypes:List[str] = []
 
     def __init__(self) -> None:
         self.classification = ""
@@ -62,6 +63,7 @@ class macro_details():
         self.contents = ""
         self.enabled = True
         self.prerequisits = []
+        self.limit_datatypes = []
         
         pass
     
@@ -75,12 +77,16 @@ class macro_details():
         data["defaults"]["environment"] = self.environment
         data["defaults"]["message_type"] = self.message_type
         
-        
+        data["columnFilters"] = {}
+        data["columnFilters"]["limit_datatypes"] = []
+        for datatype in self.limit_datatypes:
+            data["columnFilters"]["limit_datatypes"].append(datatype)
+
         data["classification"] = self.classification
         data["grouping"] = self.grouping
         data["description"] = self.description
         data["version"] = self.version
-       
+
         data["macro"] = {}
         data["macro"]["contents"] = self.contents
         data["macro"]["prerequisits"] = self.prerequisits

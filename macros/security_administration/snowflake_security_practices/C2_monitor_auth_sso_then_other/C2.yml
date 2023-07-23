@@ -6,13 +6,14 @@ macros:
         After users successfully authenticate using SSO, they should not be using other methods"
     docs:
       show: true
-    monitorial_version: 1.0.0
-    monitorial_defaults:
-      schedule: "0 6 * * *"
-      severity: "warning"
-      message: "Users with SSO and not using it detected"
-      message_type: "security"
-      environment: "account"
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Users with SSO and not using it detected"
+        message_type: "security"
+        environment: "account"
     arguments:
       - name: time_filter
         type: integer

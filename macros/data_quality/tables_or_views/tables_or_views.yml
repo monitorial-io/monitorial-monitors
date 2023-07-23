@@ -5,13 +5,14 @@ macros:
     description: "Checks to see the presence of a null value. If the results contains a null then a notification will be sent"
     docs:
       show: true
-    monitorial_version: 1.0.0
-    monitorial_defaults:
-      schedule: "0 9-17 * * *"
-      severity: "error"
-      message: "Unexpected null value found"
-      message_type: "freshness"
-      environment: "prod"
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 9-17 * * *"
+        severity: "error"
+        message: "Unexpected null value found"
+        message_type: "data_quality"
+        environment: "prod"
     arguments:
       - name: table_or_view
         type: string
@@ -24,13 +25,16 @@ macros:
     description: "Checks to see when data was retreived last, if the time exeeds the specified expectation then a notification will be sent"
     docs:
       show: true
-    monitorial_version: 1.0.0
-    monitorial_defaults:
-      schedule: "0 9-17 * * *"
-      severity: "error"
-      message: "Source Freshness issue found"
-      message_type: "freshness"
-      environment: "prod"
+    monitorial:
+      version: 1.0.1
+      defaults:
+        schedule: "0 9-17 * * *"
+        severity: "error"
+        message: "Source Freshness issue found"
+        message_type: "freshness"
+        environment: "prod"
+      column_filters:
+        limit_datatypes: ["TIMESTAMP_NTZ", "TIMESTAMP_LTZ", "TIMESTAMP_TZ", "TIMESTAMP", "DATE"]
     arguments:
       - name: table_or_view
         type: string
@@ -38,6 +42,37 @@ macros:
       - name: column
         type: string
         description: "column name to check for null values"
+      - name: datepart
+        type: string
+        description: "The period of time to check for freshness, e.g. 'day', 'hour', 'minute' (default is minute)"
       - name: freshness_threshold
         type: integer
-        description: "The number of minutes since the last update before a data is considered stale"
+        description: "The number of minutes/hours/day since the last update before data is considered stale (based off the datepart selecetd)"
+
+  - name: expect_column_values_to_be_between
+    description: "Checks to see if the column has a value between those specified, if any rows exceed the limits then a notification will be sent"
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 9-17 * * *"
+        severity: "error"
+        message: "Column value out of range"
+        message_type: "data_quality"
+        environment: "prod"
+      column_filters:
+        limit_datatypes: ["NUMBER", "FLOAT", "DOUBLE", "INTEGER"]
+    arguments:
+      - name: table_or_view
+        type: string
+        description: "fully qualified table or view name"
+      - name: column
+        type: string
+        description: "column name to check for null values"
+      - name: min_value
+        type: integer
+        description: "The minimum value that shoud be found in the column"
+      - name: max_value
+        type: integer
+        description: "The maximum value that shoud be found in the column"

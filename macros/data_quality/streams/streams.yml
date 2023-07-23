@@ -5,13 +5,14 @@ macros:
     description: "Checks to see if there are any streams cannot be queried successfully for the given databases. If any are found, a notification will be sent."
     docs:
       show: true
-    monitorial_version: 1.0.0
-    monitorial_defaults:
-      schedule: "0 9-17 * * *"
-      severity: "warning"
-      message: "Invalid Stream Found"
-      message_type: "stream_status"
-      environment: "prod"
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 9-17 * * *"
+        severity: "warning"
+        message: "Invalid Stream Found"
+        message_type: "stream_status"
+        environment: "prod"
     arguments:
       - name: databases
         type: List[string]
@@ -21,13 +22,14 @@ macros:
     description: "Checks to see if there are any streams have invalid base tables for the given databases. If any are found, a notification will be sent."
     docs:
       show: true
-    monitorial_version: 1.0.0
-    monitorial_defaults:
-      schedule: "0 9-17 * * *"
-      severity: "warning"
-      message: "Base Table for Stream not found"
-      message_type: "stream_status"
-      environment: "prod"
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 9-17 * * *"
+        severity: "warning"
+        message: "Base Table for Stream not found"
+        message_type: "stream_status"
+        environment: "prod"
     arguments:
       - name: databases
         type: List[string]
@@ -37,13 +39,14 @@ macros:
     description: "Checks to see if there are any streams have gone stale for the given databases. If any are found, a notification will be sent."
     docs:
       show: true
-    monitorial_version: 1.0.1
-    monitorial_defaults:
-      schedule: "0 9-17 * * *"
-      severity: "warning"
-      message: "Stream has been marked as stale"
-      message_type: "stream_status"
-      environment: "prod"
+    monitorial:
+      version: 1.0.1
+      defaults:
+        schedule: "0 9-17 * * *"
+        severity: "warning"
+        message: "Stream has been marked as stale"
+        message_type: "stream_status"
+        environment: "prod"
     arguments:
       - name: databases
         type: List[string]
@@ -53,13 +56,14 @@ macros:
     description: "Checks to see if there are any streams which may become stale if they aren't consumed from for the given databases. If any are found, a notification will be sent."
     docs:
       show: true
-    monitorial_version: 1.0.0
-    monitorial_defaults:
-      schedule: "0 9-17 * * *"
-      severity: "warning"
-      message: "Stream found which may become stale if not consumed"
-      message_type: "stream_status"
-      environment: "prod"
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 9-17 * * *"
+        severity: "warning"
+        message: "Stream found which may become stale if not consumed"
+        message_type: "stream_status"
+        environment: "prod"
     arguments:
       - name: databases
         type: List[string]
