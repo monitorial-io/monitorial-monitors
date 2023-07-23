@@ -1,7 +1,7 @@
 version: 2
 
 macros:
-  - name: is_not_null
+  - name: not_null
     description: "Checks to see the presence of a null value. If the results contains a null then a notification will be sent"
     docs:
       show: true

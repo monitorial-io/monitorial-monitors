@@ -1,4 +1,4 @@
-{% macro streams_stale_after (databases) -%}
+{% macro streams_going_stale (databases) -%}
 --<prereq> show streams in account;
 select 
     concat("database_name",'.',"schema_name",'.',"name") as stream_name,

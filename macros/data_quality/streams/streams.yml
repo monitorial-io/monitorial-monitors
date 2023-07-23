@@ -1,7 +1,7 @@
 version: 2
 
 macros:
-  - name: streams_invalid
+  - name: streams_gone_invalid
     description: "Checks to see if there are any streams cannot be queried successfully for the given databases. If any are found, a notification will be sent."
     docs:
       show: true
@@ -17,7 +17,7 @@ macros:
         type: List[string]
         description: "name of the databases when looking at the streams"
 
-  - name: streams_invalid_table
+  - name: streams_with_invalid_tables
     description: "Checks to see if there are any streams have invalid base tables for the given databases. If any are found, a notification will be sent."
     docs:
       show: true
@@ -33,7 +33,7 @@ macros:
         type: List[string]
         description: "name of the databases when looking at the streams"
 
-  - name: streams_stale
+  - name: streams_gone_stale
     description: "Checks to see if there are any streams have gone stale for the given databases. If any are found, a notification will be sent."
     docs:
       show: true
@@ -49,7 +49,7 @@ macros:
         type: List[string]
         description: "name of the databases when looking at the streams"
 
-  - name: streams_stale_after
+  - name: streams_going_stale
     description: "Checks to see if there are any streams which may become stale if they aren't consumed from for the given databases. If any are found, a notification will be sent."
     docs:
       show: true

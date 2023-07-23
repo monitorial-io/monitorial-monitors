@@ -1,4 +1,4 @@
-{% macro streams_stale (databases) -%}
+{% macro streams_with_invalid_tables (databases) -%}
 --<prereq> show streams in account;
 select 
     concat("database_name",'.',"schema_name",'.',"name") as stream_name,
@@ -8,7 +8,7 @@ select
     "stale" as is_stale,
     "invalid_reason" as invalid_reason
 from
-    table(result_scan(last_query_id())) 
-where "stale" = true
+    table(result_scan(last_query_id()))
+where "table_name" = 'No privilege or table dropped'
 and "database_name" in ({%- for database in databases -%}'{{database}}'{% if not loop.last %},{% endif %}{% endfor %})
 {%- endmacro %}

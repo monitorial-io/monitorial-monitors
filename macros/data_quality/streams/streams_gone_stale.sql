@@ -1,4 +1,4 @@
-{% macro streams_invalid(databases) -%}
+{% macro streams_gone_stale (databases) -%}
 --<prereq> show streams in account;
 select 
     concat("database_name",'.',"schema_name",'.',"name") as stream_name,
@@ -9,6 +9,6 @@ select
     "invalid_reason" as invalid_reason
 from
     table(result_scan(last_query_id())) 
-where "invalid_reason" != 'N/A'
+where "stale" = true
 and "database_name" in ({%- for database in databases -%}'{{database}}'{% if not loop.last %},{% endif %}{% endfor %})
 {%- endmacro %}
