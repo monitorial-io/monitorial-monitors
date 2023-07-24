@@ -7,5 +7,5 @@ select
     count({{ column }}) as number_records_found
 from {{ table_or_view }}
 where length({{ column }}) < {{min_length}}
-or {{ column }} > {{max_length}}
+or length{{ column }}) > {{max_length}}
 {%- endmacro %}
