@@ -36,12 +36,16 @@ macros:
     description: <<description of your macro>>
     docs:
       show: true
-    monitorial_defaults:
-      schedule: <<CRON schedule this should be run on>>
-      severity: "<<severity level to be associated when a result is returned>>"
-      message: "<<message to be sent out in the notification>>"
-      message_type: "<<type of message this represents (eg security)>>"
-      environment: "<<environment in which the monitor is to be deployed in>>"
+    monitorial:
+      version: 1.0.3
+      defaults:
+        schedule: <<CRON schedule this should be run on>>
+        severity: "<<severity level to be associated when a result is returned>>"
+        message: "<<message to be sent out in the notification>>"
+        message_type: "<<type of message this represents (eg security)>>"
+        environment: "<<environment in which the monitor is to be deployed in>>"
+      column_filters:
+        datatypes: []
     arguments:
       - name: <<name of your argument>>
         type: <<data type>>
@@ -105,3 +109,22 @@ macros:
 | periodic_rekey_changes             | Changes to this setting are rare and deserving of scrutiny                                                                                                                                                                                                                                                                                |
 | integration_object_changes         | Because integrations can enable a new means of access to Snowflake data, closely monitor for new integrations or the modification of existing integrations                                                                                                                                                                                |
 | security_integration_changes       | Because security integrations can enable a new means of access to Snowflake data, closely monitor for new integrations or the modification of existing security integrations                                                                                                                                                              |
+
+
+### Data Quality
+
+| name                                      | description                                                                                                                                                                                                                            |
+| ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| pipe_channel_error                        | Checks to see if an error message has been produced when attempting to read messages from the associated Google Cloud Pub/Sub queue or Microsoft Azure Event Grid storage queue. If there is an error then a notification will be sent |
+| pipe_freshness                            | Checks to see when the most recent file was loaded successfully by Snowpipe into the destination table. If the file is older than the freshness_threshold then a notification will be sent                                             |
+| pipe_outstanding_messages                 | Checks the number of messages in the queue that have been queued but not received yet and number of files queued for loading by the pipe. If either of these values exceed the threshold then a notification will be sent              |
+| pipe_status                               | Checks the current execution state of a pipe. Any status except those in the exception list will trigger an notification to be sent                                                                                                    |
+| streams_gone_invalid                      | Checks to see if there are any streams cannot be queried successfully for the given databases. If any are found, a notification will be sent.                                                                                          |
+| streams_with_invalid_tables               | Checks to see if there are any streams have invalid base tables for the given databases. If any are found, a notification will be sent.                                                                                                |
+| streams_gone_stale                        | Checks to see if there are any streams have gone stale for the given databases. If any are found, a notification will be sent.                                                                                                         |
+| streams_going_stale                       | Checks to see if there are any streams which may become stale if they aren't consumed from for the given databases. If any are found, a notification will be sent.                                                                     |
+| not_null                                  | Checks to see the presence of a null value. If the results contains a null then a notification will be sent                                                                                                                            |
+| source_freshness                          | Checks to see when data was retrieved last, if the time exeeds the specified expectation then a notification will be sent                                                                                                              |
+| expect_column_values_to_be_between        | Checks to see if the column has a value between those specified, if any rows exceed the limits then a notification will be sent                                                                                                        |
+| expect_column_value_lengths_to_be_between | Checks to see if column entries to be strings with length between a min_length value and a max_length value (inclusive). If any rows falls outside this range then a notification will be sent                                         |
+| expect_column_value_lengths_to_equal      | Checks to see if column entries to be strings with a specific length. If any rows don't match outside this range then a notification will be sent                                                                                      |

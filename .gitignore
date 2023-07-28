@@ -2,4 +2,6 @@
 target/
 dbt_packages/
 .monitorial/json
+.monitorial/.secrets.json
 __pycache__/
+desktop.ini

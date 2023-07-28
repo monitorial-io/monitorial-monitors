@@ -8,12 +8,14 @@ macros:
         There are inline comments on how to adjust the query to limit results"
     docs:
       show: true
-    monitorial_defaults:
-      schedule: "0 6 * * *"
-      severity: "warning"
-      message: "Concurrent failed logins detected"
-      message_type: "security"
-      environment: "account"  
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Concurrent failed logins detected"
+        message_type: "security"
+        environment: "account"  
     arguments:
       - name: number_of_failures
         type: integer
@@ -29,12 +31,14 @@ macros:
     description: Failed login monitor grouped by user and first auth method
     docs:
       show: true
-    monitorial_defaults:
-      schedule: "0 6 * * *"
-      severity: "info"
-      message: "Failed logins detected"
-      message_type: "security"
-      environment: "account"  
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "info"
+        message: "Failed logins detected"
+        message_type: "security"
+        environment: "account"  
     arguments:
       - name: number_of_failures
         type: integer

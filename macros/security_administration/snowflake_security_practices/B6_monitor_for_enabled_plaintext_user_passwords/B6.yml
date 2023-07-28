@@ -5,12 +5,14 @@ macros:
     description: "Monitor for the enablement of plaintext user passwords"
     docs:
       show: true
-    monitorial_defaults:
-      schedule: "0 6 * * *"
-      severity: "warning"
-      message: "Altered user(s) to plain text password detected"
-      message_type: "security"
-      environment: "account"
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Altered user(s) to plain text password detected"
+        message_type: "security"
+        environment: "account"
     arguments:
       - name: time_filter
         type: integer

@@ -1,0 +1,79 @@
+version: 2
+
+macros:
+  - name: pipe_channel_error
+    description: "Checks to see if an error message has been produced when attempting to read messages from the associated Google Cloud Pub/Sub queue or Microsoft Azure Event Grid storage queue. If there is an error then a notification will be sent"
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "*/15 9-17 * * *"
+        severity: "error"
+        message: "Snowpipe Channel Error"
+        message_type: "freshness"
+        environment: "prod"
+    arguments:
+      - name: pipe
+        type: string
+        description: "pipe to check for channel errors"
+
+  - name: pipe_freshness
+    description: Checks to see when the most recent file was loaded successfully by Snowpipe into the destination table. If the file is older than the freshness_threshold then a notification will be sent
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "*/15 9-17 * * *"
+        severity: "warning"
+        message: "Snowpipe Freshness Failure"
+        message_type: "freshness"
+        environment: "prod"
+    arguments:
+      - name: pipe
+        type: string
+        description: "pipe to check for freshness"
+      - name: freshness_threshold
+        type: integer
+        description: "The number of minutes since the last update before a pipe is considered stale"
+
+  - name: pipe_outstanding_messages
+    description: Checks the number of messages in the queue that have been queued but not received yet and number of files queued for loading by the pipe. If either of these values exceed the threshold then a notification will be sent
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "*/15 9-17 * * *"
+        severity: "info"
+        message: "Snowpipe Outstanding Messages"
+        message_type: "freshness"
+        environment: "prod"
+    arguments:
+      - name: pipe
+        type: string
+        description: "pipe to check for freshness"
+      - name: max_outstanding_messages
+        type: integer
+        description: "The maximum number of outstanding messages before a pipe is considered to have a backlog"
+
+  - name: pipe_status
+    description: Checks the current execution state of a pipe. Any status except those in the exception list will trigger an notification to be sent
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "*/15 9-17 * * *"
+        severity: "warning"
+        message: "Snowpipe Status Issues"
+        message_type: "freshness"
+        environment: "prod"
+    arguments:
+      - name: pipe
+        type: string
+        description: "pipe to check for freshness"
+      - name: pipe_status_exception_list
+        type: List[string]
+        description: "The list of states to exclude from the check. default is: RUNNING, PAUSED, STOPPED_CLONED "

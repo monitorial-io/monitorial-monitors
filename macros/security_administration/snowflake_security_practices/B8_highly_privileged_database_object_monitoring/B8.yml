@@ -5,12 +5,14 @@ macros:
     description: "Monitors high privilege query activity that involves elevated privileges in your Snowflake Account"
     docs:
       show: true
-    monitorial_defaults:
-      schedule: "0 6 * * *"
-      severity: "warning"
-      message: "High privilege query activity detected"
-      message_type: "security"
-      environment: "account"
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "High privilege query activity detected"
+        message_type: "security"
+        environment: "account"
     arguments:
       - name: time_filter
         type: integer

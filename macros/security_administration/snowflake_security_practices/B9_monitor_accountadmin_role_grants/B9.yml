@@ -5,12 +5,14 @@ macros:
     description: "The Snowflake role ACCOUNTADMIN should be closely monitored for granting to new users"
     docs:
       show: true
-    monitorial_defaults:
-      schedule: "0 6 * * *"
-      severity: "warning"
-      message: "New user assigned to ACCOUNTADMIN role detected"
-      message_type: "security"
-      environment: "account"
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "New user assigned to ACCOUNTADMIN role detected"
+        message_type: "security"
+        environment: "account"
     arguments:
       - name: time_filter
         type: integer
