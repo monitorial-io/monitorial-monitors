@@ -47,7 +47,7 @@ macros:
       defaults:
         schedule: "*/15 9-17 * * *"
         severity: "info"
-        message: "Snowpipe Oustanding Messages"
+        message: "Snowpipe Outstanding Messages"
         message_type: "freshness"
         environment: "prod"
     arguments:
@@ -59,7 +59,7 @@ macros:
         description: "The maximum number of outstanding messages before a pipe is considered to have a backlog"
 
   - name: pipe_status
-    description: Checks the current execution state of a pipe. Any status except those in the exception list will trigger an notifictaion to be sent
+    description: Checks the current execution state of a pipe. Any status except those in the exception list will trigger an notification to be sent
     docs:
       show: true
     monitorial:

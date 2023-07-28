@@ -22,7 +22,7 @@ macros:
         description: "column name to check for null values"
 
   - name: source_freshness
-    description: "Checks to see when data was retreived last, if the time exeeds the specified expectation then a notification will be sent"
+    description: "Checks to see when data was retrieved last, if the time exeeds the specified expectation then a notification will be sent"
     docs:
       show: true
     monitorial:
@@ -72,10 +72,10 @@ macros:
         description: "column name to check for null values"
       - name: min_value
         type: integer
-        description: "The minimum value that shoud be found in the column"
+        description: "The minimum value that should be found in the column"
       - name: max_value
         type: integer
-        description: "The maximum value that shoud be found in the column"
+        description: "The maximum value that should be found in the column"
 
   - name: expect_column_value_lengths_to_be_between
     description: "Checks to see if column entries to be strings with length between a min_length value and a max_length value (inclusive). If any rows falls outside this range then a notification will be sent"
@@ -100,10 +100,10 @@ macros:
         description: "column name to check for null values"
       - name: min_length
         type: integer
-        description: "The minimum length that shoud be found in the column"
+        description: "The minimum length that should be found in the column"
       - name: max_length
         type: integer
-        description: "The maximum length that shoud be found in the column"
+        description: "The maximum length that should be found in the column"
 
   - name: expect_column_value_lengths_to_equal
     description: "Checks to see if column entries to be strings with a specific length. If any rows don't match outside this range then a notification will be sent"
@@ -128,7 +128,7 @@ macros:
         description: "column name to check for null values"
       - name: length
         type: integer
-        description: "The minimum length that shoud be found in the column"
+        description: "The minimum length that should be found in the column"
       - name: row_condition
         type: string
         description: "The row condition which should be applied to the query (eg id is not null)"
