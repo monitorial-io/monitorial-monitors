@@ -4,5 +4,5 @@ select
     * 
 from 
     table(result_scan(last_query_id())) 
-where "value" = false;
+where "value" = false
 {%- endmacro %}
