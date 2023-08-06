@@ -25,7 +25,7 @@ macros:
     docs:
       show: true
     monitorial:
-      version: 1.0.0
+      version: 1.0.1
       defaults:
         schedule: "0 6 * * *"
         severity: "info"

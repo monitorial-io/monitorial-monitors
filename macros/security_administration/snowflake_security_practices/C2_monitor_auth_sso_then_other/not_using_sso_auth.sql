@@ -29,7 +29,7 @@ from
     sso_first_login inner join 
     logins_last_time_period 
     on 
-        sso_first_login.user_name = logins_last_time_period.username
+        sso_first_login.user_name = logins_last_time_period.user_name
 order by 
     logins_last_time_period.event_timestamp desc
 {%- endmacro %}
