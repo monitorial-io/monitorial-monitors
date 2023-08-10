@@ -1,5 +1,10 @@
 #Monitorial.io Monitors Change Log
 
+## 1.0.4
+* added new monitor `login_failures_by_username_detailed` which shows the username, ip addresses used, authentication method and exception thrown
+* updated monitor `blocked_ip_address_events` to refer to current_timestamp instead of current_time when doing a time_filter
+* updated monitor `login_failures_by_ip_address` to refer to current_timestamp instead of current_time when doing a time_filter
+
 ## 1.0.3
 * added version information to yml definitions for Monitorial.io purposes
 * updated Monitorial.io documentation generation python scripts

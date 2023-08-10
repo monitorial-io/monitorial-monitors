@@ -6,7 +6,7 @@ macros:
     docs:
       show: true
     monitorial:
-      version: 1.0.0
+      version: 1.0.1
       defaults:
         schedule: "0 6 * * *"
         severity: "warning"
@@ -23,7 +23,7 @@ macros:
     docs:
       show: true
     monitorial:
-      version: 1.0.0
+      version: 1.0.1
       defaults:
         schedule: "0 6 * * *"
         severity: "warning"
@@ -51,5 +51,3 @@ macros:
       - name: time_filter
         type: integer
         description: "Retrospective time period in minutes for the query window"
-
-  

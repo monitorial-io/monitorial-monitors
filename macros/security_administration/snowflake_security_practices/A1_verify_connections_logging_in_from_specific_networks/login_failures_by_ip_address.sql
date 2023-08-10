@@ -6,6 +6,6 @@ from
     snowflake.account_usage.login_history
 where 
     is_success='NO'
-    and event_timestamp >= dateadd(minutes, -{{ time_filter }}, current_time)
+    and event_timestamp >= dateadd(minutes, -{{ time_filter }}, current_timestamp)
 group by client_ip
 {%- endmacro %}
