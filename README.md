@@ -65,10 +65,11 @@ macros:
 | rbar_detection       | Detect row-by-row processing queries repeatedly executed within the same session as these are a high priority for tuning. Ref:  https://www.analytics.today/blog/top-3-snowflake-performance-tuning-tactics |
 
 ### Security Administration
-| name              | description                                                                  |
-| ----------------- | ---------------------------------------------------------------------------- |
-| orphaned_roles    | Returns a list of orphaned roles                                             |
-| scim_token_expiry | Alerts a configurable numbers of days has past since the last token creation |
+| name                                | description                                                                  |
+| ----------------------------------- | ---------------------------------------------------------------------------- |
+| orphaned_roles                      | Returns a list of orphaned roles                                             |
+| scim_token_expiry                   | Alerts a configurable numbers of days has past since the last token creation |
+| login_failures_by_username_detailed | Count of login failures by username                                          |
 
 ### Snowflake Security Practices
 
