@@ -11,7 +11,8 @@ active_roles AS (
     where snowflake.account_usage.roles.name != ALL (
         select exception_list.role_exception
         from exception_list) and
-        deleted_on is null
+        deleted_on is null and
+        role_type = 'ROLE'
 ),
 role_grants AS (
 
