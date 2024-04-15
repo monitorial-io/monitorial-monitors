@@ -1,0 +1,36 @@
+version: 2
+
+macros:
+  - name: omnata_failures
+    description: "Checks for failures in the Omnata data pipeline and sends a notification if any failures are detected"
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0,30 7-20 * * *"
+        severity: "error"
+        message: "Omnata Sync Failures Detected"
+        message_type: "omnata"
+        environment: "account"
+    arguments:
+      - name: minutes
+        type: integer
+        description: "The number of minutes to look back for query execution; default = 30"
+
+  - name: omnata_incomplete
+    description: "Checks for incomplete syncs in the Omnata data pipeline and sends a notification if any failures are detected"
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0,30 7-20 * * *"
+        severity: "warning"
+        message: "Omnata Sync Incomplete Runs Detected"
+        message_type: "omnata"
+        environment: "account"
+    arguments:
+      - name: minutes
+        type: integer
+        description: "The number of minutes to look back for query execution; default = 30"
