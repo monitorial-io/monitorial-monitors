@@ -1,7 +1,7 @@
 version: 2
 
 macros:
-  - name: omnata_failures
+  - name: omnata_sync_failures
     description: "Checks for failures in the Omnata data pipeline and sends a notification if any failures are detected"
     docs:
       show: true
@@ -18,7 +18,7 @@ macros:
         type: integer
         description: "The number of minutes to look back for query execution; default = 30"
 
-  - name: omnata_incomplete
+  - name: omnata_sync_incomplete
     description: "Checks for incomplete syncs in the Omnata data pipeline and sends a notification if any failures are detected"
     docs:
       show: true
