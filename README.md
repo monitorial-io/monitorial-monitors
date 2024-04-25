@@ -125,7 +125,15 @@ macros:
 | streams_gone_stale                        | Checks to see if there are any streams have gone stale for the given databases. If any are found, a notification will be sent.                                                                                                         |
 | streams_going_stale                       | Checks to see if there are any streams which may become stale if they aren't consumed from for the given databases. If any are found, a notification will be sent.                                                                     |
 | not_null                                  | Checks to see the presence of a null value. If the results contains a null then a notification will be sent                                                                                                                            |
+| unique_check                              | Checks to see if there are non unqiue records in a table. If the results contains a non unique records then a notification will be sent                                                                                                |
 | source_freshness                          | Checks to see when data was retrieved last, if the time exeeds the specified expectation then a notification will be sent                                                                                                              |
 | expect_column_values_to_be_between        | Checks to see if the column has a value between those specified, if any rows exceed the limits then a notification will be sent                                                                                                        |
 | expect_column_value_lengths_to_be_between | Checks to see if column entries to be strings with length between a min_length value and a max_length value (inclusive). If any rows falls outside this range then a notification will be sent                                         |
 | expect_column_value_lengths_to_equal      | Checks to see if column entries to be strings with a specific length. If any rows don't match outside this range then a notification will be sent                                                                                      |
+
+### Data Load
+
+| name                   | description                                                                                                   |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------- |
+| omnata_sync_failures   | Checks for failures in the Omnata data pipeline and sends a notification if any failures are detected         |
+| omnata_sync_incomplete | Checks for incomplete syncs in the Omnata data pipeline and sends a notification if any failures are detected |

@@ -21,6 +21,26 @@ macros:
         type: string
         description: "column name to check for null values"
 
+  - name: unique_check
+    description: "Checks to see if there are non unqiue records in a table. If the results contains a non unique records then a notification will be sent"
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 9-17 * * *"
+        severity: "error"
+        message: "Non unique values found"
+        message_type: "data_quality"
+        environment: "prod"
+    arguments:
+      - name: table_or_view
+        type: string
+        description: "fully qualified table or view name"
+      - name: column
+        type: string
+        description: "column name to check for non unique values"
+
   - name: source_freshness
     description: "Checks to see when data was retrieved last, if the time exeeds the specified expectation then a notification will be sent"
     docs:
