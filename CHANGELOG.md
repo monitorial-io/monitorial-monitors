@@ -1,5 +1,9 @@
 #Monitorial.io Monitors Change Log
 
+## 1.0.5
+* added new monitor `omnata_sync_failed` to monitor failed syncs
+* added new monitor `omnata_sync_incomplete` to monitor incomplete syncs
+
 ## 1.0.4
 * added new monitor `login_failures_by_username_detailed` which shows the username, ip addresses used, authentication method and exception thrown
 * updated monitor `blocked_ip_address_events` to refer to current_timestamp instead of current_time when doing a time_filter

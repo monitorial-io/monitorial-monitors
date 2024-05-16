@@ -26,7 +26,7 @@ if __name__ == '__main__':
     if not os.path.exists(f"{os.getcwd()}\\json"):
         os.makedirs(f"{os.getcwd()}\\json")
 
-    if is_docs_only == False:
+    if is_docs_only is False:
         while generate_file_answer not in ["y", "n"]:
             generate_file_answer = input('Do you want to generate json output files? (y/n) ')
         file_output = generate_file_answer.lower() == "y"

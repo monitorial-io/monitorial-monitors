@@ -27,25 +27,25 @@ def get_default_value(macro_name, argument_name, argument_type, contents):
     name = f"{{% macro {macro_name}"
     for line in lines:
        if line.startswith(name):
+            #print(line)
             working_line = line.replace(f"{name}(", "").replace(") -%}", "").replace(" = ", "=")
-            #print(f"{macro_name} - {argument_name} - {working_line}")
-            while working_line.strip().startswith(f"{argument_name},") == False and working_line.strip().startswith(f"{argument_name}=") == False and working_line != argument_name :
+            while working_line.strip().startswith(f"{argument_name},") is False and working_line.strip().startswith(f"{argument_name}=") is False and working_line != argument_name :
                 working_line = working_line[1:]
 
-            if working_line.strip().startswith(f"{argument_name},"):
-                defaultValue = ""
-            elif working_line.strip().startswith(f"{argument_name}="):
-                if argument_type.startswith("List"):
-                    data  =working_line.split("]")[0].strip()
-                    defaultValue = data.split("=")[1]
-                    defaultValue = f"{defaultValue}]"
+                if working_line.strip().startswith(f"{argument_name},"):
+                    defaultValue = ""
+                elif working_line.strip().startswith(f"{argument_name}="):
+                    if argument_type.startswith("List"):
+                        data  =working_line.split("]")[0].strip()
+                        defaultValue = data.split("=")[1]
+                        defaultValue = f"{defaultValue}]"
+                    else:
+                        data = working_line.split(",")[0].strip()
+                        defaultValue = data.split("=")[1].replace("\"", "")
                 else:
-                    data = working_line.split(",")[0].strip()
-                    defaultValue = data.split("=")[1].replace("\"", "")
-            else:
-                defaultValue = ""
+                    defaultValue = ""
 
-            return defaultValue
+                return defaultValue
 
 
             break
@@ -122,7 +122,7 @@ def get_file_items(path, macros:List[macro_details]):
                             details.message = "No message provided"
                             details.environment = "prod"
                             details.message_type = details.classification
-                            
+
                         if "column_filters" in macro['monitorial']:
                             if "limit_datatypes" in macro['monitorial']['column_filters']:
                                 details.limit_datatypes = macro['monitorial']['column_filters']['limit_datatypes']
