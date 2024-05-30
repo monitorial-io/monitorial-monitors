@@ -9,6 +9,7 @@ where
     execution_status = 'SUCCESS'
     and query_type = 'GRANT'
     and role_name not in  (
+       'SNOWFLAKE',
         {%- for authorized_role_name in authorized_role_names -%}
         '{{ authorized_role_name }}'
         {% if not loop.last %},{% endif %}
