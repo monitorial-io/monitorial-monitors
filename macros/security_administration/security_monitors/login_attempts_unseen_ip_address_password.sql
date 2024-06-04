@@ -1,4 +1,4 @@
-{% macro login_attempt_unseen_ip_address_password (time_filter=1440) -%}
+{% macro login_attempts_unseen_ip_address_password (time_filter=1440) -%}
 with recent_logins as (
     select
         snowflake.account_usage.login_history.user_name, 

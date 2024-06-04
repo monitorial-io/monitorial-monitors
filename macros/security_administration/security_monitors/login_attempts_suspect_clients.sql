@@ -1,4 +1,4 @@
-{% macro login_suspect_clients (time_filter=1440) -%}
+{% macro login_attempts_suspect_clients (time_filter=1440) -%}
 select
     *
 from

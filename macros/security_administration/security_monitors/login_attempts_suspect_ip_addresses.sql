@@ -1,4 +1,4 @@
-{% macro login_suspect_ip_addresses (time_filter=1440) -%}
+{% macro login_attempts_suspect_ip_addresses (time_filter=1440) -%}
 SELECT
     *
 FROM

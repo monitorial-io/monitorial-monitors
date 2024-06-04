@@ -65,11 +65,14 @@ macros:
 | rbar_detection       | Detect row-by-row processing queries repeatedly executed within the same session as these are a high priority for tuning. Ref:  https://www.analytics.today/blog/top-3-snowflake-performance-tuning-tactics |
 
 ### Security Administration
-| name                                | description                                                                  |
-| ----------------------------------- | ---------------------------------------------------------------------------- |
-| orphaned_roles                      | Returns a list of orphaned roles                                             |
-| scim_token_expiry                   | Alerts a configurable numbers of days has past since the last token creation |
-| login_failures_by_username_detailed | Count of login failures by username                                          |
+| name                                      | description                                                                                                                             |
+| ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| scim_token_expiry                         | Checks to see when the SCIM Access Token was created and sends a notification if its greater than the specified warn_after_days         |
+| orphaned_roles                            | Checks to see if there are any orphaned roles in your account excluding those specified. If any are found, a notification will be sent. |
+| login_failures_by_username_detailed       | Count of login failures by username                                                                                                     |
+| login_attempts_suspect_clients            | Logins detected from suspect clients                                                                                                    |
+| login_attempts_suspect_ip_addresses       | Logins detected from suspect ip address                                                                                                 |
+| login_attempts_unseen_ip_address_password | Logins detected (with password) from previously unseen ip address                                                                       |
 
 ### Snowflake Security Practices
 

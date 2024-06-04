@@ -39,7 +39,7 @@ macros:
         type: List[string]
         description: "List of roles to exclude from the check, default is ID_TOKEN_INVALID"
 
-  - name: login_suspect_clients
+  - name: login_attempts_suspect_clients
     description: "Logins detected from suspect clients"
     docs:
       show: true
@@ -56,7 +56,7 @@ macros:
         type: integer
         description: "Retrospective time period in minutes for the query window"
 
-  - name: login_suspect_id_addresses
+  - name: login_attempts_suspect_ip_addresses
     description: "Logins detected from suspect ip address"
     docs:
       show: true
@@ -73,7 +73,7 @@ macros:
         type: integer
         description: "Retrospective time period in minutes for the query window"
 
-  - name: login_attempt_unseen_ip_address_password
+  - name: login_attempts_unseen_ip_address_password
     description: "Logins detected (with password) from previously unseen ip address"
     docs:
       show: true
@@ -85,9 +85,7 @@ macros:
         message: "Login detected from suspect ip address"
         message_type: "security"
         environment: "account"
-
-
-
-        
-
-     
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
