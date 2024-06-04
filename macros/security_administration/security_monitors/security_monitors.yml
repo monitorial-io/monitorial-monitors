@@ -38,3 +38,52 @@ macros:
       - name: first_authentication_factor_exception_list
         type: List[string]
         description: "List of roles to exclude from the check, default is ID_TOKEN_INVALID"
+
+  - name: login_suspect_clients
+    description: "Logins detected from suspect clients"
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Login detected from suspect client"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: login_suspect_id_addresses
+    description: "Logins detected from suspect ip address"
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Login detected from suspect ip address"
+        message_type: "security"
+        environment: "account"
+
+  - name: login_attempt_unseen_ip_address_password
+    description: "Logins detected (with password) from previously unseen ip address"
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Login detected from suspect ip address"
+        message_type: "security"
+        environment: "account"
+
+
+
+        
+
+     
