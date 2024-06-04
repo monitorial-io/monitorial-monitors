@@ -1,4 +1,4 @@
-{% macro login_suspect_ip_addresses -%}
+{% macro login_suspect_ip_addresses (time_filter=1440) -%}
 SELECT
     *
 FROM
@@ -71,7 +71,9 @@ WHERE
         '104.129.24.115',
         '146.70.119.24',
         '138.199.34.144'
-    )
+    ) 
+and
+    event_timestamp >= dateadd(minutes, -{{ time_filter }}, current_timestamp)
 ORDER BY
     event_timestamp
 {%- endmacro %}

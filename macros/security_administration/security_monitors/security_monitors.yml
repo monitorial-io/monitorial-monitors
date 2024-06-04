@@ -68,6 +68,10 @@ macros:
         message: "Login detected from suspect ip address"
         message_type: "security"
         environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
 
   - name: login_attempt_unseen_ip_address_password
     description: "Logins detected (with password) from previously unseen ip address"
