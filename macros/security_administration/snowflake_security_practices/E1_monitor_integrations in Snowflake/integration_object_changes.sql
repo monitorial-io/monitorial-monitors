@@ -10,7 +10,7 @@ from
 where
     execution_status = 'SUCCESS'
     and query_type in ('CREATE', 'ALTER', 'DROP')
-    and query_text ilike '%integration%'
+    and regexp_like(query_text, '^[[:space:]]*(create([[:space:]]*or[[:space:]]*replace)?|alter|drop)[[:space:]]*(api|storage|notification|catalog|external)[[:space:]]+(.*)', 'i')
     and end_time >= dateadd(minutes, -{{ time_filter }}, current_timestamp)
 order by end_time desc
 {%- endmacro %}
