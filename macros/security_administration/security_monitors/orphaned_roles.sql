@@ -3,6 +3,8 @@
 with exception_list as (
   select role_names.value::string AS role_exception
   from table(flatten(input => parse_json('["{{ '","'.join(exception_list) }}"]'))) role_names
+  union all
+  select 'SYSTEM$PRIVACY_ENGINE_ROLE_V1' as role_exception
 ),
 active_roles AS (
 

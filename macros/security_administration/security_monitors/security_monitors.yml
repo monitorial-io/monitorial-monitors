@@ -7,7 +7,7 @@ macros:
     docs:
       show: true
     monitorial:
-      version: 1.0.1
+      version: 1.0.2
       defaults:
         schedule: "0 6 * * *"
         severity: "warning"
