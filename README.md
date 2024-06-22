@@ -12,7 +12,7 @@ Snowflake monitors you want and monitorial.io will deploy these for you and send
 Add the following to your packages.yml file
 ```
   - git: https://github.com/monitorial-io/monitorial-monitors.git
-    revision: "1.0.0"
+    revision: "1.0.7"
 ```
 
 ## Usage
