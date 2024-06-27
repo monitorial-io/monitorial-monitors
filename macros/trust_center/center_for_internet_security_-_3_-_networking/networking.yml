@@ -1,0 +1,28 @@
+version: 2
+
+macros:
+  - name: network_policy_configured_to_allow_acces_from_trusted_ip_addresses
+    description: "[CIS 3.1] Ensure that an account-level network policy has been configured to only allow access from trusted IP addresses"
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Trust Center - CIS-3.1 found an potential threat or vulnerability"
+        message_type: "trustcenter_networking"
+        environment: "account"
+
+  - name: network_policy_configured_for_service_accounts
+    description: "[CIS 3.2] Ensure that user-level network policies have been configured for service accounts"
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Trust Center - CIS-3.2 found an potential threat or vulnerability"
+        message_type: "trustcenter_networking"
+        environment: "account"

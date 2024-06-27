@@ -1,5 +1,8 @@
 #Monitorial.io Monitors Change Log
 
+## 1.0.8
+* added new monitor for `trust_center` findings to monitor the trust center for any changes
+
 ## 1.0.7
 * updated monitor `orphaned_roles` to exclude the role `SYSTEM$PRIVACY_ENGINE_ROLE_V1`
 
