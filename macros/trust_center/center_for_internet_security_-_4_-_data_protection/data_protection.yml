@@ -1,0 +1,145 @@
+version: 2
+
+macros:
+  - name: rekeying_enabled_for_account
+    description: "[CIS 4.1] Ensure yearly rekeying is enabled for a Snowflake account"
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Trust Center - CIS-4.1 found an potential threat or vulnerability"
+        message_type: "trustcenter_data"
+        environment: "account"
+
+  - name: aes_encryption_size
+    description: "[CIS 4.2] Ensure AES encryption key size used to encrypt files stored in internal stages is set to 256 bits"
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Trust Center - CIS-4.2 found an potential threat or vulnerability"
+        message_type: "trustcenter_data"
+        environment: "account"
+
+  - name: data_retention_time_in_days
+    description: "[CIS 4.3] Ensure that the DATA_RETENTION_TIME_IN_DAYS parameter is set to 90 for critical data"
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Trust Center - CIS-4.3 found an potential threat or vulnerability"
+        message_type: "trustcenter_data"
+        environment: "account"
+
+  - name: min_data_retention_time_in_days
+    description: "[CIS 4.4] Ensure that the MIN_DATA_RETENTION_TIME_IN_DAYS account parameter is set to 7 or higher"
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Trust Center - CIS-4.4 found an potential threat or vulnerability"
+        message_type: "trustcenter_data"
+        environment: "account"
+
+  - name: require_storage_integration_for_stage_creation
+    description: "[CIS 4.5] Ensure that the REQUIRE_STORAGE_INTEGRATION_FOR_STAGE_CREATION account parameter is set to true"
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Trust Center - CIS-4.5 found an potential threat or vulnerability"
+        message_type: "trustcenter_data"
+        environment: "account"
+
+  - name: require_storage_integration_for_stage_operation
+    description: "[CIS 4.6] Ensure that the REQUIRE_STORAGE_INTEGRATION_FOR_STAGE_OPERATION account parameter is set to true"
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Trust Center - CIS-4.6 found an potential threat or vulnerability"
+        message_type: "trustcenter_data"
+        environment: "account"
+
+  - name: external_stages_have_storage_integrations
+    description: "[CIS 4.7] Ensure that all external stages have storage integrations"
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Trust Center - CIS-4.7 found an potential threat or vulnerability"
+        message_type: "trustcenter_data"
+        environment: "account"
+
+  - name: prevent_unload_to_inline_url
+    description: "[CIS 4.8] Ensure that the PREVENT_UNLOAD_TO_INLINE_URL account parameter is set to true"
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Trust Center - CIS-4.8 found an potential threat or vulnerability"
+        message_type: "trustcenter_data"
+        environment: "account"
+
+  - name: tri_secret_secure_enabled
+    description: "[CIS 4.9] Ensure that Tri-Secret Secure is enabled for the Snowflake account"
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Trust Center - CIS-4.9 found an potential threat or vulnerability"
+        message_type: "trustcenter_data"
+        environment: "account"
+
+  - name: data_masking_enabled_for_sensitive_data
+    description: "[CIS 4.10] Ensure that data masking is enabled for sensitive data"
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Trust Center - CIS-4.10 found an potential threat or vulnerability"
+        message_type: "trustcenter_data"
+        environment: "account"
+
+  - name: row_level_policies_configured_for_sensitive_data
+    description: "[CIS 4.11] Ensure that row-access policies are configured for sensitive data"
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Trust Center - CIS-4.11 found an potential threat or vulnerability"
+        message_type: "trustcenter_data"
+        environment: "account"

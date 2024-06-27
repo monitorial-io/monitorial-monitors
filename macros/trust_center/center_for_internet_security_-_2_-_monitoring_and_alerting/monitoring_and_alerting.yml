@@ -1,0 +1,119 @@
+version: 2
+
+macros:
+  - name: monitoring_accountadmin_securityadmin_role_grants
+    description: "[CIS 2.1] Ensure monitoring and alerting exist for ACCOUNTADMIN and SECURITYADMIN role grants"
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Trust Center - CIS-2.1 found an potential threat or vulnerability"
+        message_type: "trustcenter_monitoring"
+        environment: "account"
+
+  - name: monitoring_manage_grants
+    description: "[CIS 2.2] Ensure monitoring and alerting exist for MANAGE GRANTS privilege grants"
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Trust Center - CIS-2.2 found an potential threat or vulnerability"
+        message_type: "trustcenter_monitoring"
+        environment: "account"
+
+  - name: monitoring_password_signins_sso_users
+    description: "[CIS 2.3] Ensure monitoring and alerting exist for password sign-ins of SSO users"
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Trust Center - CIS-2.3 found an potential threat or vulnerability"
+        message_type: "trustcenter_monitoring"
+        environment: "account"
+
+  - name: monitoring_password_signin_without_mfa
+    description: "[CIS 2.4] Ensure monitoring and alerting exist for password sign-in without MFA"
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Trust Center - CIS-2.4 found an potential threat or vulnerability"
+        message_type: "trustcenter_monitoring"
+        environment: "account"
+
+  - name: monitoring_security_integrations
+    description: "[CIS 2.5] Ensure monitoring and alerting exist for creation, update and deletion of security integrations"
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Trust Center - CIS-2.5 found an potential threat or vulnerability"
+        message_type: "trustcenter_monitoring"
+        environment: "account"
+
+  - name: monitoring_network_policies
+    description: "[CIS 2.6] Ensure monitoring and alerting exist for changes to network policies and associated objects"
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Trust Center - CIS-2.6 found an potential threat or vulnerability"
+        message_type: "trustcenter_monitoring"
+        environment: "account"
+
+  - name: monitoring_scim_token_creation
+    description: "[CIS 2.7] Ensure monitoring and alerting exist for SCIM token creation"
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Trust Center - CIS-2.7 found an potential threat or vulnerability"
+        message_type: "trustcenter_monitoring"
+        environment: "account"
+
+  - name: monitoring_new_share_exposures
+    description: "[CIS 2.8] Ensure monitoring and alerting exists for new share exposures"
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Trust Center - CIS-2.8 found an potential threat or vulnerability"
+        message_type: "trustcenter_monitoring"
+        environment: "account"
+
+  - name: monitoring_unsupported_snowflake_connector
+    description: "[CIS 2.9] Ensure monitoring and alerting exists for sessions from unsupported Snowflake Connector for Python and JDBC and ODBC drivers"
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Trust Center - CIS-2.9 found an potential threat or vulnerability"
+        message_type: "trustcenter_monitoring"
+        environment: "account"

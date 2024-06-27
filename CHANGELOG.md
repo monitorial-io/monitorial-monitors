@@ -1,12 +1,7 @@
 #Monitorial.io Monitors Change Log
 
-## 1.0.7
-* updated monitor `orphaned_roles` to exclude the role `SYSTEM$PRIVACY_ENGINE_ROLE_V1`
-
 ## 1.0.6
-* added monitor `login_attempts_suspect_clients` to monitor login attempts from suspect clients
-* added monitor `login_attempts_suspect_ip_addresses` to monitor login attempts from suspect ip addresses
-* added monitor `login_attempts_unseen_ip_address_password` to monitor login attempts from unseen ip addresses with the same password
+* added new monitor for `trust_center` findings to monitor the trust center for any changes
 
 ## 1.0.5
 * added new monitor `omnata_sync_failed` to monitor failed syncs
