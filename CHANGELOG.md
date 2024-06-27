@@ -1,5 +1,8 @@
 #Monitorial.io Monitors Change Log
 
+## 1.0.6
+* added new monitor for `trust_center` findings to monitor the trust center for any changes
+
 ## 1.0.5
 * added new monitor `omnata_sync_failed` to monitor failed syncs
 * added new monitor `omnata_sync_incomplete` to monitor incomplete syncs
