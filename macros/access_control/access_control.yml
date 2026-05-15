@@ -1,0 +1,92 @@
+version: 2
+
+macros:
+  - name: privileged_users_no_mfa
+    description: "Detects users with privileged roles (ACCOUNTADMIN, SECURITYADMIN, SYSADMIN) who are using password authentication without MFA enabled. This is a critical security risk as compromised credentials give full account access."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "critical"
+        message: "Privileged users without MFA detected"
+        message_type: "security"
+        environment: "account"
+    arguments: []
+
+  - name: inactive_privileged_users
+    description: "Detects users with privileged role grants who have not logged in for a specified number of days. Inactive privileged accounts are a security risk as compromised credentials may go undetected longer."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * 1"
+        severity: "warning"
+        message: "Inactive privileged users detected"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: days_inactive
+        type: integer
+        description: "Number of days without login to flag a user; default = 90"
+
+  - name: role_grant_concentration
+    description: "Detects roles with excessive grant concentrations, indicating over-privileged roles that violate least-privilege principles. Roles with ALL PRIVILEGES or very high grant counts should be reviewed and decomposed."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * 1"
+        severity: "warning"
+        message: "Over-privileged roles detected"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: grant_threshold
+        type: integer
+        description: "Minimum number of grants for a role to be flagged; default = 100"
+
+  - name: network_policy_coverage_gap
+    description: "Identifies users and service accounts that are not covered by any network policy. Without network policy protection, these accounts can be accessed from any IP address."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * 1"
+        severity: "warning"
+        message: "Users without network policy coverage detected"
+        message_type: "security"
+        environment: "account"
+    arguments: []
+
+  - name: dangling_network_policies
+    description: "Detects network policies that exist but are not assigned to any user or to the account level. These orphaned policies may indicate incomplete security configurations or cleanup gaps."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * 1"
+        severity: "info"
+        message: "Dangling network policies detected"
+        message_type: "security"
+        environment: "account"
+    arguments: []
+
+  - name: personal_access_tokens
+    description: "Lists users who have personal access tokens (PATs) configured. PATs are long-lived credentials that should be monitored and rotated regularly."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * 1"
+        severity: "info"
+        message: "Users with personal access tokens detected"
+        message_type: "security"
+        environment: "account"
+    arguments: []
