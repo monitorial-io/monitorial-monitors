@@ -1,0 +1,39 @@
+version: 2
+
+macros:
+  - name: low_declarative_ddl_adoption
+    description: "Monitors ratio of declarative DDL (CREATE OR ALTER, EXECUTE IMMEDIATE FROM) vs imperative DDL."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * 1"
+        severity: "info"
+        message: "Low declarative DDL adoption detected"
+        message_type: "operational_failures"
+        environment: "account"
+    arguments:
+      - name: min_declarative_pct
+        type: integer
+        description: "Minimum expected declarative percentage; default = 10"
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes; default = 43200 (30 days)"
+
+  - name: git_integration_inactive
+    description: "Detects Git integrations with no fetch/execute activity in the specified window."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * 1"
+        severity: "info"
+        message: "Inactive Git integrations detected"
+        message_type: "operational_failures"
+        environment: "account"
+    arguments:
+      - name: days_inactive
+        type: integer
+        description: "Number of days without activity to consider inactive; default = 30"

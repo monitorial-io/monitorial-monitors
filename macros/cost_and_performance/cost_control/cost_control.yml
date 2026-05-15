@@ -1,0 +1,116 @@
+version: 2
+
+macros:
+  - name: cost_anomaly_detection
+    description: "Detects days with credit consumption significantly above historical average using z-score analysis."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 7 * * *"
+        severity: "warning"
+        message: "Cost anomaly detected - daily credits significantly above average"
+        message_type: "cost_and_performance"
+        environment: "account"
+    arguments:
+      - name: percent_change_threshold
+        type: integer
+        description: "Minimum percent above average to flag; default = 50"
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes; default = 43200 (30 days)"
+
+  - name: warehouse_cost_spike
+    description: "Detects warehouses with significant week-over-week credit consumption increases."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * 1"
+        severity: "warning"
+        message: "Warehouse cost spike detected week-over-week"
+        message_type: "cost_and_performance"
+        environment: "account"
+    arguments:
+      - name: percent_change_threshold
+        type: integer
+        description: "Minimum week-over-week percent increase; default = 50"
+      - name: min_credits
+        type: integer
+        description: "Minimum credits in either week to be evaluated; default = 10"
+
+  - name: serverless_cost_spike
+    description: "Monitors serverless service credit consumption (auto-clustering, tasks, MVs, search optimization)."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 7 * * *"
+        severity: "warning"
+        message: "Serverless service cost spike detected"
+        message_type: "cost_and_performance"
+        environment: "account"
+    arguments:
+      - name: credit_threshold
+        type: integer
+        description: "Minimum credits to trigger alert; default = 10"
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes; default = 43200 (30 days)"
+
+  - name: budget_utilization_warning
+    description: "Monitors month-to-date credit consumption against a budget threshold and projects days until exhaustion."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 8 * * *"
+        severity: "warning"
+        message: "Budget utilization warning - approaching limit"
+        message_type: "cost_and_performance"
+        environment: "account"
+    arguments:
+      - name: budget_limit_credits
+        type: integer
+        description: "Monthly credit budget limit; default = 500"
+      - name: warning_pct
+        type: integer
+        description: "Utilization percentage to trigger warning; default = 75"
+
+  - name: resource_monitor_coverage_gap
+    description: "Identifies high-spend warehouses not covered by any resource monitor."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 7 * * 1"
+        severity: "warning"
+        message: "High-spend warehouses without resource monitors detected"
+        message_type: "cost_and_performance"
+        environment: "account"
+    arguments:
+      - name: min_monthly_credits
+        type: integer
+        description: "Minimum monthly credits to be flagged; default = 100"
+
+  - name: cloud_services_overhead
+    description: "Breaks down cloud services credit consumption by pattern type (SHOW, short queries, metadata, single-row inserts)."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 7 * * 1"
+        severity: "info"
+        message: "Cloud services overhead breakdown available"
+        message_type: "cost_and_performance"
+        environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes; default = 43200 (30 days)"

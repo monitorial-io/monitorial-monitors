@@ -1,0 +1,30 @@
+version: 2
+
+macros:
+  - name: network_policy_coverage_gap
+    description: "Identifies users/service accounts not covered by any network policy."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * 1"
+        severity: "warning"
+        message: "Users without network policy coverage detected"
+        message_type: "security"
+        environment: "account"
+    arguments: []
+
+  - name: dangling_network_policies
+    description: "Detects network policies that exist but are not assigned to any user or account."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * 1"
+        severity: "info"
+        message: "Dangling network policies detected"
+        message_type: "security"
+        environment: "account"
+    arguments: []

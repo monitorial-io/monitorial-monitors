@@ -1,0 +1,73 @@
+version: 2
+
+macros:
+  - name: high_data_churn
+    description: "Detects tables with high churn — time-travel/failsafe overhead significantly exceeds active storage."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * 1"
+        severity: "warning"
+        message: "High data churn tables detected"
+        message_type: "cost_and_performance"
+        environment: "account"
+    arguments:
+      - name: churn_ratio_threshold
+        type: float
+        description: "Minimum ratio of (time_travel + failsafe) / active storage; default = 2.0"
+
+  - name: short_lived_tables
+    description: "Detects tables created and dropped within a short window — consider using transient tables."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "info"
+        message: "Short-lived tables detected"
+        message_type: "cost_and_performance"
+        environment: "account"
+    arguments:
+      - name: lifespan_hours
+        type: integer
+        description: "Maximum lifespan to be considered short-lived; default = 24"
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes; default = 43200 (30 days)"
+
+  - name: storage_growth_anomaly
+    description: "Detects month-over-month storage growth exceeding a threshold."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 1 * *"
+        severity: "warning"
+        message: "Storage growth anomaly detected"
+        message_type: "cost_and_performance"
+        environment: "account"
+    arguments:
+      - name: growth_pct_threshold
+        type: integer
+        description: "Minimum MoM growth percentage; default = 20"
+
+  - name: unused_objects
+    description: "Identifies tables with significant storage that have not been accessed in the lookback window."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * 1"
+        severity: "info"
+        message: "Unused objects with significant storage detected"
+        message_type: "cost_and_performance"
+        environment: "account"
+    arguments:
+      - name: days_inactive
+        type: integer
+        description: "Number of days without access to consider unused; default = 90"

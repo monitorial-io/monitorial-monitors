@@ -2,7 +2,7 @@ version: 2
 
 macros:
   - name: snowpipe_idle_credits
-    description: "Detects Snowpipes that are consuming credits without loading data, or with very poor cost-per-GB efficiency. Idle pipes burn credits via notification channel overhead even when no files arrive."
+    description: "Detects Snowpipes consuming credits without loading data or with poor cost-per-GB efficiency."
     docs:
       show: true
     monitorial:
@@ -11,18 +11,18 @@ macros:
         schedule: "0 7 * * *"
         severity: "warning"
         message: "Snowpipe idle or high-cost-per-GB detected"
-        message_type: "data_ingestion"
+        message_type: "cost_and_performance"
         environment: "account"
     arguments:
       - name: idle_credit_threshold
         type: float
-        description: "Minimum credits for a pipe to be evaluated; default = 0.5"
+        description: "Minimum credits for evaluation; default = 0.5"
       - name: time_filter
         type: integer
-        description: "Retrospective time period in minutes for the query window; default = 43200 (30 days)"
+        description: "Retrospective time period in minutes; default = 43200 (30 days)"
 
   - name: snowpipe_streaming_cost_spike
-    description: "Detects days where Snowpipe Streaming credit consumption spikes significantly above the historical average, indicating possible upstream volume changes or misconfigurations."
+    description: "Detects days where Snowpipe Streaming credits spike above historical average."
     docs:
       show: true
     monitorial:
@@ -31,7 +31,7 @@ macros:
         schedule: "0 7 * * *"
         severity: "warning"
         message: "Snowpipe Streaming cost spike detected"
-        message_type: "data_ingestion"
+        message_type: "cost_and_performance"
         environment: "account"
     arguments:
       - name: percent_change_threshold
@@ -39,10 +39,10 @@ macros:
         description: "Minimum percent above average to flag; default = 50"
       - name: time_filter
         type: integer
-        description: "Retrospective time period in minutes for the query window; default = 43200 (30 days)"
+        description: "Retrospective time period in minutes; default = 43200 (30 days)"
 
   - name: bulk_load_small_files
-    description: "Detects COPY or Snowpipe loads with very small average file sizes. Small files (<10MB) are inefficient for Snowflake ingestion and should be concatenated upstream for optimal performance."
+    description: "Detects loads with very small average file sizes (<10MB) — inefficient for Snowflake ingestion."
     docs:
       show: true
     monitorial:
@@ -51,7 +51,7 @@ macros:
         schedule: "0 7 * * *"
         severity: "warning"
         message: "Bulk load with small files detected"
-        message_type: "data_ingestion"
+        message_type: "cost_and_performance"
         environment: "account"
     arguments:
       - name: avg_file_mb_threshold
@@ -59,13 +59,13 @@ macros:
         description: "Maximum average file size in MB to flag; default = 10"
       - name: min_files
         type: integer
-        description: "Minimum number of files loaded to be evaluated; default = 100"
+        description: "Minimum file count to be evaluated; default = 100"
       - name: time_filter
         type: integer
-        description: "Retrospective time period in minutes for the query window; default = 43200 (30 days)"
+        description: "Retrospective time period in minutes; default = 43200 (30 days)"
 
   - name: ingestion_method_cost_comparison
-    description: "Compares credit consumption across ingestion methods (Snowpipe, Bulk COPY, Streaming) to identify which method is most expensive and whether a different approach would be more cost-effective."
+    description: "Compares credit consumption across ingestion methods (Snowpipe, Bulk COPY, Streaming)."
     docs:
       show: true
     monitorial:
@@ -74,9 +74,9 @@ macros:
         schedule: "0 7 * * 1"
         severity: "info"
         message: "Ingestion method cost comparison available"
-        message_type: "data_ingestion"
+        message_type: "cost_and_performance"
         environment: "account"
     arguments:
       - name: time_filter
         type: integer
-        description: "Retrospective time period in minutes for the query window; default = 43200 (30 days)"
+        description: "Retrospective time period in minutes; default = 43200 (30 days)"

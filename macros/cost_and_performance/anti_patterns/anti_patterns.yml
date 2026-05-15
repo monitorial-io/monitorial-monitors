@@ -1,0 +1,102 @@
+version: 2
+
+macros:
+  - name: single_row_inserts
+    description: "Detects single-row INSERT anti-pattern — excessive cloud services overhead, should be batched."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 7 * * *"
+        severity: "warning"
+        message: "Single-row INSERT anti-pattern detected"
+        message_type: "cost_and_performance"
+        environment: "account"
+    arguments:
+      - name: min_insert_count
+        type: integer
+        description: "Minimum single-row inserts to trigger alert; default = 100"
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes; default = 43200 (30 days)"
+
+  - name: high_frequency_short_queries
+    description: "Detects SELECT queries <100ms executed thousands of times — polling or inefficient lookups."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 7 * * *"
+        severity: "info"
+        message: "High-frequency short queries detected"
+        message_type: "cost_and_performance"
+        environment: "account"
+    arguments:
+      - name: min_execution_count
+        type: integer
+        description: "Minimum execution count to be flagged; default = 1000"
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes; default = 43200 (30 days)"
+
+  - name: high_frequency_show_commands
+    description: "Detects SHOW commands at very high frequency from BI tools or orchestration polling metadata."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 7 * * *"
+        severity: "info"
+        message: "High-frequency SHOW commands detected"
+        message_type: "cost_and_performance"
+        environment: "account"
+    arguments:
+      - name: min_execution_count
+        type: integer
+        description: "Minimum execution count to be flagged; default = 500"
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes; default = 43200 (30 days)"
+
+  - name: copy_command_inefficiency
+    description: "Detects COPY commands with poor selectivity — long execution, few rows loaded."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 7 * * *"
+        severity: "warning"
+        message: "Inefficient COPY commands detected"
+        message_type: "cost_and_performance"
+        environment: "account"
+    arguments:
+      - name: min_execution_count
+        type: integer
+        description: "Minimum execution count to be flagged; default = 10"
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes; default = 43200 (30 days)"
+
+  - name: materialized_view_refresh_cost
+    description: "Monitors MV refresh credit consumption — high cost may indicate the MV is not cost-effective."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * 1"
+        severity: "info"
+        message: "Materialized view with high refresh costs detected"
+        message_type: "cost_and_performance"
+        environment: "account"
+    arguments:
+      - name: credit_threshold
+        type: float
+        description: "Minimum total credits to flag; default = 1"
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes; default = 43200 (30 days)"

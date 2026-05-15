@@ -1,0 +1,58 @@
+version: 2
+
+macros:
+  - name: untagged_sensitive_columns
+    description: "Identifies columns with sensitive naming patterns (EMAIL, SSN, etc.) that have no governance tags."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * 1"
+        severity: "warning"
+        message: "Potentially sensitive columns without tags detected"
+        message_type: "data_quality"
+        environment: "account"
+    arguments: []
+
+  - name: masking_policy_coverage_gap
+    description: "Identifies sensitive-tagged columns without masking policies — data protection gaps."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * 1"
+        severity: "critical"
+        message: "Sensitive columns without masking policy detected"
+        message_type: "data_quality"
+        environment: "account"
+    arguments: []
+
+  - name: row_access_policy_gap
+    description: "Identifies tables with sensitive columns but no row access policy."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * 1"
+        severity: "warning"
+        message: "Tables with sensitive data but no row access policy"
+        message_type: "data_quality"
+        environment: "account"
+    arguments: []
+
+  - name: downstream_lineage_gaps
+    description: "Identifies downstream objects depending on protected sources that lack their own tags/policies."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * 1"
+        severity: "warning"
+        message: "Downstream lineage governance gaps detected"
+        message_type: "data_quality"
+        environment: "account"
+    arguments: []

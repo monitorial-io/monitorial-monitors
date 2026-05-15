@@ -1,0 +1,33 @@
+version: 2
+
+macros:
+  - name: dangling_policies
+    description: "Detects masking/RAP policies referencing dropped tables or views — orphaned policies."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * 1"
+        severity: "info"
+        message: "Dangling governance policies detected"
+        message_type: "data_quality"
+        environment: "account"
+    arguments: []
+
+  - name: stale_tagged_tables
+    description: "Identifies tagged tables not modified in >90 days — candidates for review or archival."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 1 * *"
+        severity: "info"
+        message: "Stale tagged tables detected"
+        message_type: "data_quality"
+        environment: "account"
+    arguments:
+      - name: days_stale
+        type: integer
+        description: "Number of days without modification to consider stale; default = 90"

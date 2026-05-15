@@ -1,0 +1,19 @@
+version: 2
+
+macros:
+  - name: role_grant_concentration
+    description: "Detects roles with excessive grant concentrations — over-privileged roles violating least-privilege."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * 1"
+        severity: "warning"
+        message: "Over-privileged roles detected"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: grant_threshold
+        type: integer
+        description: "Minimum number of grants to be flagged; default = 100"
