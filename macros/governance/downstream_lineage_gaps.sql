@@ -7,12 +7,7 @@ WITH protected_sources AS (
         tr.object_name AS table_name
     FROM SNOWFLAKE.ACCOUNT_USAGE.TAG_REFERENCES tr
     WHERE tr.domain IN ('TABLE', 'COLUMN')
-      AND (
-          tr.tag_name ILIKE '%SENSITIVE%'
-          OR tr.tag_name ILIKE '%PII%'
-          OR tr.tag_name ILIKE '%PHI%'
-          OR tr.tag_name ILIKE '%PCI%'
-      )
+      AND {{ dbt_monitorialio_monitors._sensitive_tag_filter('tr.tag_name', 'tr.tag_value') }}
 ),
 downstream_objects AS (
     SELECT DISTINCT

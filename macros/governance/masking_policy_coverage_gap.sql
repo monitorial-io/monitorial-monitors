@@ -10,16 +10,7 @@ WITH sensitive_tagged AS (
         tr.tag_value
     FROM SNOWFLAKE.ACCOUNT_USAGE.TAG_REFERENCES tr
     WHERE tr.domain = 'COLUMN'
-      AND (
-          tr.tag_name ILIKE '%SENSITIVE%'
-          OR tr.tag_name ILIKE '%PII%'
-          OR tr.tag_name ILIKE '%PHI%'
-          OR tr.tag_name ILIKE '%PCI%'
-          OR tr.tag_name ILIKE '%GDPR%'
-          OR tr.tag_name ILIKE '%PRIVACY%'
-          OR tr.tag_value ILIKE '%SENSITIVE%'
-          OR tr.tag_value ILIKE '%IDENTIFIER%'
-      )
+      AND {{ dbt_monitorialio_monitors._sensitive_tag_filter('tr.tag_name', 'tr.tag_value') }}
 ),
 masked_columns AS (
     SELECT DISTINCT

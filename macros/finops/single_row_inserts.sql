@@ -1,7 +1,7 @@
 {% macro single_row_inserts(min_insert_count=100, time_filter=43200) -%}
 
 SELECT
-    REGEXP_SUBSTR(query_text, 'INSERT INTO ([a-zA-Z0-9_.]+)', 1, 1, 'i', 1) AS target_table,
+    database_name || '.' || schema_name AS target_schema,
     user_name,
     COUNT(*) AS insert_count,
     SUM(rows_produced) AS total_rows_loaded,
@@ -15,7 +15,7 @@ FROM SNOWFLAKE.ACCOUNT_USAGE.QUERY_HISTORY
 WHERE start_time >= DATEADD(minutes, -{{ time_filter }}, CURRENT_TIMESTAMP())
   AND query_type = 'INSERT'
   AND rows_produced = 1
-GROUP BY REGEXP_SUBSTR(query_text, 'INSERT INTO ([a-zA-Z0-9_.]+)', 1, 1, 'i', 1), user_name
+GROUP BY database_name, schema_name, user_name
 HAVING insert_count > {{ min_insert_count }}
 ORDER BY insert_count DESC
 

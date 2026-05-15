@@ -1,3 +1,12 @@
+{#
+  Identifies tables with significant storage that have not been accessed within the
+  lookback window defined by days_inactive.
+
+  Note: ACCESS_HISTORY is only searched within the days_inactive window.  Objects that
+  appear here had NO access during that window.  The column days_since_creation shows
+  the object age (not last-access time) because ACCESS_HISTORY does not retain events
+  older than the lookback period.
+#}
 {% macro unused_objects(days_inactive=90) -%}
 
 WITH object_access AS (
@@ -31,8 +40,7 @@ SELECT
     at.object_name,
     at.storage_gb,
     at.created,
-    oa.last_accessed,
-    DATEDIFF('day', COALESCE(oa.last_accessed, at.created), CURRENT_TIMESTAMP()) AS days_since_access
+    DATEDIFF('day', at.created, CURRENT_TIMESTAMP()) AS days_since_creation
 FROM all_tables at
 LEFT JOIN object_access oa
     ON at.database_name = oa.database_name

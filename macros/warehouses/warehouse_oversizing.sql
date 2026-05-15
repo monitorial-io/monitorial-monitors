@@ -1,12 +1,7 @@
 {% macro warehouse_oversizing(pct_oversized_threshold=50, time_filter=10080) -%}
 
 WITH node_mapping AS (
-    SELECT 'X-Small' AS size, 1 AS nodes UNION ALL
-    SELECT 'Small', 2 UNION ALL SELECT 'Medium', 4 UNION ALL
-    SELECT 'Large', 8 UNION ALL SELECT 'X-Large', 16 UNION ALL
-    SELECT '2X-Large', 32 UNION ALL SELECT '3X-Large', 64 UNION ALL
-    SELECT '4X-Large', 128 UNION ALL SELECT '5X-Large', 256 UNION ALL
-    SELECT '6X-Large', 512
+    {{ dbt_monitorialio_monitors._node_mapping() }}
 )
 SELECT
     q.WAREHOUSE_NAME,
