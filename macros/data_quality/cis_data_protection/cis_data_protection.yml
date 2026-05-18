@@ -1,26 +1,8 @@
 version: 2
 
 macros:
-  - name: by_key_pair_auth
-    description: "Monitor the use of key pair authentication by querying login attempt"
-    docs:
-      show: true
-    monitorial:
-      version: 1.0.0
-      defaults:
-        schedule: "0 6 * * *"
-        severity: "info"
-        message: "key pair auth report"
-        message_type: "administration"
-        environment: "account"
-    arguments:
-      - name: time_filter
-        type: integer
-        description: "Retrospective time period in minutes for the query window"
-
-  - name: has_key_pair_and_password
-    description: "Monitor if exclusive Key Pair authentication users are configured to use other
-      authentication methods.  Users who have key pair authentication should be using it exclusively"
+  - name: periodic_rekey_enabled
+    description: "Checks that automatic data rekeying is turned on to provide additional data security."
     docs:
       show: true
     monitorial:
@@ -28,11 +10,27 @@ macros:
       defaults:
         schedule: "0 6 * * *"
         severity: "warning"
-        message: "User with key pair and password detected"
-        message_type: "administration"
+        message: "Periodic re-keying isn't enabled"
+        message_type: "security"
         environment: "account"
     arguments:
       - name: time_filter
         type: integer
         description: "Retrospective time period in minutes for the query window"
 
+  - name: periodic_rekey_changes
+    description: "Detects changes to the periodic rekeying setting — rare and deserving of scrutiny."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Changes to periodic re-keying detected"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"

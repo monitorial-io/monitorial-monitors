@@ -1,0 +1,162 @@
+version: 2
+
+macros:
+  - name: monitoring_accountadmin_securityadmin_role_grants
+    description: "Monitors ACCOUNTADMIN and SECURITYADMIN role grant events (CIS 2.1)."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Admin role grants detected"
+        message_type: "security"
+        environment: "account"
+    arguments: []
+
+  - name: monitoring_manage_grants
+    description: "Monitors MANAGE GRANTS privilege grants (CIS 2.2)."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "MANAGE GRANTS privilege granted"
+        message_type: "security"
+        environment: "account"
+    arguments: []
+
+  - name: monitoring_network_policies
+    description: "Monitors network policy changes (CIS 2.6)."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Network policy changes detected"
+        message_type: "security"
+        environment: "account"
+    arguments: []
+
+  - name: monitoring_new_share_exposures
+    description: "Monitors new data share exposures (CIS 2.8)."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "New share exposures detected"
+        message_type: "security"
+        environment: "account"
+    arguments: []
+
+  - name: monitoring_password_signin_without_mfa
+    description: "Monitors password sign-ins without MFA (CIS 2.4)."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Password sign-in without MFA detected"
+        message_type: "security"
+        environment: "account"
+    arguments: []
+
+  - name: monitoring_password_signins_sso_users
+    description: "Monitors SSO users signing in with password instead of SSO."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "SSO user password sign-in detected"
+        message_type: "security"
+        environment: "account"
+    arguments: []
+
+  - name: monitoring_scim_token_creation
+    description: "Monitors SCIM token creation events (CIS 2.7)."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "SCIM token creation detected"
+        message_type: "security"
+        environment: "account"
+    arguments: []
+
+  - name: monitoring_security_integrations
+    description: "Monitors security integration changes (CIS 2.5)."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Security integration changes detected"
+        message_type: "security"
+        environment: "account"
+    arguments: []
+
+  - name: monitoring_unsupported_snowflake_connector
+    description: "Monitors for unsupported Snowflake connector sessions (CIS 2.9)."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "info"
+        message: "Unsupported connector sessions detected"
+        message_type: "security"
+        environment: "account"
+    arguments: []
+
+  - name: integration_object_changes
+    description: "Monitors new or modified integrations — integrations can enable new means of access to data."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.1
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Changes to Integrations detected"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: security_integration_changes
+    description: "Monitors new or modified security integrations — can enable new means of access to data."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Changes to Security Integration detected"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
