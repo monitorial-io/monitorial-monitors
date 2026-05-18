@@ -1,0 +1,280 @@
+version: 2
+
+macros:
+  - name: privileged_users_no_mfa
+    description: "Detects users with privileged roles (ACCOUNTADMIN, SECURITYADMIN, etc.) using password auth without MFA."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "critical"
+        message: "Privileged users without MFA detected"
+        message_type: "security"
+        environment: "account"
+    arguments: []
+
+  - name: inactive_privileged_users
+    description: "Detects privileged users who have not logged in for a specified number of days."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * 1"
+        severity: "warning"
+        message: "Inactive privileged users detected"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: days_inactive
+        type: integer
+        description: "Number of days without login to flag; default = 90"
+
+  - name: personal_access_tokens
+    description: "Lists users with personal access tokens — long-lived credentials that should be monitored."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * 1"
+        severity: "info"
+        message: "Users with personal access tokens detected"
+        message_type: "security"
+        environment: "account"
+    arguments: []
+
+  - name: scim_token_expiry
+    description: "Checks when the SCIM Access Token was created and alerts if it exceeds the specified warn_after_days threshold."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.1
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "info"
+        message: "SCIM Access Token is due to expire soon"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: warn_after_days
+        type: integer
+        description: "The number of days after the last SCIM token creation date"
+
+  - name: authentication_method_by_user
+    description: "Monitors the number of times each user authenticated and the authentication method they used."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "info"
+        message: "User and auth methods report"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: not_using_sso_auth
+    description: "Detects users who have used SSO before but are now using other authentication methods instead."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Users with SSO and not using it detected"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: by_key_pair_auth
+    description: "Monitors the use of key pair authentication by querying login attempts."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "info"
+        message: "Key pair auth report"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: has_key_pair_and_password
+    description: "Detects users with key pair authentication who also have password configured — key pair should be exclusive."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "User with key pair and password detected"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: has_key_pair_using_other
+    description: "Detects users with exclusive key pair auth configured who are using other authentication methods."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "User with key pair using other forms of authentication detected"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: has_key_pair_using_password
+    description: "Detects users who previously authenticated with key pair but are now using password methods."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "User with key pair using password authentication detected"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: frequently_authenticated_users
+    description: "Identifies users who login frequently — helps spot anomalies or unexpected behavior."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Frequently user logins detected"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+      - name: authentication_count_greater
+        type: integer
+        description: "The number of distinct authorizations to monitor above; default = 25"
+
+  - name: scim_token_creation
+    description: "SCIM access tokens have a six-month lifespan — tracks how many were generated. Requires ACCOUNTADMIN."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "SCIM Access Token generated"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: failed_login_attempts_concurrent
+    description: "Detects brute force attacks by identifying concurrent login failures based on count and rate."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Concurrent failed logins detected"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: number_of_failures
+        type: integer
+        description: "The number of concurrent failures; default = 3"
+      - name: seconds_between_failures
+        type: integer
+        description: "The amount of time in seconds between failures; default = 5"
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: failed_login_attempts
+    description: "Failed login monitor grouped by user and first auth method."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "info"
+        message: "Failed logins detected"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: number_of_failures
+        type: integer
+        description: "The number of concurrent failures; default = 2"
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: mfa_auth_stats
+    description: "Multi factor authentication statistics — identifies logins without MFA."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "info"
+        message: "Logins without MFA stats"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: password_login_with_mfa
+    description: "Detects most recent logins with password when MFA is enabled."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Logins with password detected"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"

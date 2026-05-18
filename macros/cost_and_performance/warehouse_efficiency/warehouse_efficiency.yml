@@ -1,0 +1,99 @@
+version: 2
+
+macros:
+  - name: warehouse_idle_credits
+    description: "Detects warehouses with high idle credit waste — compute credits consumed while running but not processing queries."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Warehouse idle credit waste detected"
+        message_type: "cost_and_performance"
+        environment: "account"
+    arguments:
+      - name: idle_percent_threshold
+        type: integer
+        description: "Minimum idle percentage to trigger alert; default = 30"
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes; default = 10080 (7 days)"
+
+  - name: warehouse_oversizing
+    description: "Detects warehouses oversized for their workloads by comparing partitions scanned against node count."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Oversized warehouse detected"
+        message_type: "cost_and_performance"
+        environment: "account"
+    arguments:
+      - name: pct_oversized_threshold
+        type: integer
+        description: "Minimum percentage of oversized queries to trigger alert; default = 50"
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes; default = 10080 (7 days)"
+
+  - name: warehouse_always_on
+    description: "Detects warehouses running nearly 24/7, indicating misconfigured auto-suspend or consolidation opportunities."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Always-on warehouse detected"
+        message_type: "cost_and_performance"
+        environment: "account"
+    arguments:
+      - name: avg_hours_threshold
+        type: integer
+        description: "Average hours per day to be flagged; default = 20"
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes; default = 10080 (7 days)"
+
+  - name: warehouse_queuing
+    description: "Detects warehouses with query queuing, indicating insufficient capacity for demand."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 */4 * * *"
+        severity: "warning"
+        message: "Warehouse query queuing detected"
+        message_type: "cost_and_performance"
+        environment: "account"
+    arguments:
+      - name: avg_queue_threshold
+        type: float
+        description: "Average queued load threshold; default = 0.1"
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes; default = 10080 (7 days)"
+
+  - name: warehouse_scaling_efficiency
+    description: "Combined oversizing and idle analysis per warehouse with actionable recommendations."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "info"
+        message: "Warehouse scaling efficiency issues detected"
+        message_type: "cost_and_performance"
+        environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes; default = 10080 (7 days)"

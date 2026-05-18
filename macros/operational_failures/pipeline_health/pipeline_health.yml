@@ -1,0 +1,53 @@
+version: 2
+
+macros:
+  - name: dynamic_table_refresh_failures
+    description: "Detects Dynamic Tables with failed or stalled refreshes — breaks downstream pipelines."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 */4 * * *"
+        severity: "critical"
+        message: "Dynamic Table refresh failures detected"
+        message_type: "operational_failures"
+        environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes; default = 1440 (1 day)"
+
+  - name: omnata_sync_failures
+    description: "Monitors for failed Omnata sync operations."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "critical"
+        message: "Omnata sync failure detected"
+        message_type: "operational_failures"
+        environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: omnata_sync_incomplete
+    description: "Monitors for incomplete Omnata sync operations."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Omnata sync incomplete detected"
+        message_type: "operational_failures"
+        environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"

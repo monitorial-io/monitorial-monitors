@@ -1,0 +1,20 @@
+{% macro warehouse_poor_pruning(scan_pct_threshold=90, min_partitions=100, time_filter=10080) -%}
+
+SELECT
+    WAREHOUSE_NAME,
+    QUERY_ID,
+    USER_NAME,
+    PARTITIONS_SCANNED,
+    PARTITIONS_TOTAL,
+    ROUND(PARTITIONS_SCANNED * 100.0 / NULLIF(PARTITIONS_TOTAL, 0), 1) AS pct_scanned,
+    ROUND(BYTES_SCANNED / POW(1024, 3), 2) AS gb_scanned,
+    ROUND(TOTAL_ELAPSED_TIME / 1000.0, 2) AS elapsed_seconds
+FROM SNOWFLAKE.ACCOUNT_USAGE.QUERY_HISTORY
+WHERE START_TIME >= DATEADD(minutes, -{{ time_filter }}, CURRENT_TIMESTAMP())
+  AND PARTITIONS_TOTAL >= {{ min_partitions }}
+  AND PARTITIONS_SCANNED * 100.0 / NULLIF(PARTITIONS_TOTAL, 0) > {{ scan_pct_threshold }}
+  AND WAREHOUSE_NAME IS NOT NULL
+ORDER BY PARTITIONS_SCANNED DESC
+LIMIT 20
+
+{%- endmacro %}

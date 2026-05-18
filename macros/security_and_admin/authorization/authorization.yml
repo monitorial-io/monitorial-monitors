@@ -1,0 +1,255 @@
+version: 2
+
+macros:
+  - name: role_grant_concentration
+    description: "Detects roles with excessive grant concentrations — over-privileged roles violating least-privilege."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * 1"
+        severity: "warning"
+        message: "Over-privileged roles detected"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: grant_threshold
+        type: integer
+        description: "Minimum number of grants to be flagged; default = 100"
+
+  - name: unauthorized_privilege_grants
+    description: "Monitors that all user and role grants originate from designated management roles."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.1
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Privileges granted from un-designated roles detected"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: authorized_role_names
+        type: List[string]
+        description: "The role(s) dedicated to granting privileges; default = SECURITYADMIN"
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: admin_roles_query_check
+    description: "Monitors all instances of users using default Snowflake admin roles to ensure appropriate use."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Inappropriate use of Admin roles detected"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: admin_roles
+        type: List[string]
+        description: "The admin roles to monitor; default = ACCOUNTADMIN, SECURITYADMIN, USERADMIN, SYSADMIN"
+      - name: query_types
+        type: List[string]
+        description: "The query types to monitor; default = SELECT, UPDATE, INSERT, DELETE"
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: user_creation
+    description: "Monitors for the creation of new users."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Creation of new user(s) detected"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: user_creation_non_admin
+    description: "Monitors for user creation by non-admin roles."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Creation of new user(s) from non-Admin roles detected"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: executing_role_names
+        type: List[string]
+        description: "The admin roles to monitor; default = USERADMIN"
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: user_altered
+    description: "Monitors occurrences of altered users."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Altered users detected"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: user_altered_key_pair
+    description: "Monitors occurrences of key pair auth removal from users."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Altered users key pair auth removal detected"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: user_altered_mfa_bypass
+    description: "Monitors occurrences of MFA bypass time period being altered on users."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Altered users MFA bypass detected"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: enabled_user_previously_disabled
+    description: "Monitors instances where a previously disabled user has been re-enabled."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Previously disabled user re-enabled detected"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: user_altered_to_plaintext_password
+    description: "Monitors for the enablement of plaintext user passwords."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Altered user(s) to plain text password detected"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: scim_api_calls
+    description: "Monitors SCIM API calls to ensure API requests comply with policy."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "info"
+        message: "SCIM API calls"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: number_requests
+        type: integer
+        description: "The number of SCIM requests to filter on; max = 200; default = 50"
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: high_privilege_grants
+    description: "Monitors high privilege query activity involving elevated privileges."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "High privilege query activity detected"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: accountadmin_role_grants
+    description: "Monitors ACCOUNTADMIN role being granted to new users."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "New user assigned to ACCOUNTADMIN role detected"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: public_role_grants
+    description: "Monitors for alterations or grants to the PUBLIC role — should have the fewest possible grants."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Grants to PUBLIC role detected"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"

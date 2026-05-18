@@ -1,0 +1,157 @@
+version: 2
+
+macros:
+  - name: network_policy_coverage_gap
+    description: "Identifies users/service accounts not covered by any network policy."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * 1"
+        severity: "warning"
+        message: "Users without network policy coverage detected"
+        message_type: "security"
+        environment: "account"
+    arguments: []
+
+  - name: dangling_network_policies
+    description: "Detects network policies that exist but are not assigned to any user or account."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * 1"
+        severity: "info"
+        message: "Dangling network policies detected"
+        message_type: "security"
+        environment: "account"
+    arguments: []
+
+  - name: blocked_ip_address_events
+    description: "Blocked IP address login failures (requires Network Policies to be configured)."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.1
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Logins from blocked IP addresses detected"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: login_failures_by_ip_address
+    description: "Count of login failures grouped by IP address."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.1
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Login failures by IP address detected"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: blocked_ip_address_aggregate
+    description: "Blocked IP address login failures aggregated by username, IP, driver, and auth type."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Logins from blocked IP addresses detected"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: changes_to_network_policies
+    description: "Monitors changes to Network Policies and associated objects."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Changes to Network Policies detected"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: network_policy_exists
+    description: "Monitors for the presence of at least one network policy."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "No Network Policy detected"
+        message_type: "security"
+        environment: "account"
+    arguments: []
+
+  - name: altered_client_sessions
+    description: "Monitors client applications keeping sessions open longer than desired by policy."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Sessions longer than policy detected"
+        message_type: "security"
+        environment: "account"
+    arguments:
+      - name: time_filter
+        type: integer
+        description: "Retrospective time period in minutes for the query window"
+
+  - name: network_policy_configured_for_service_accounts
+    description: "Ensures service accounts have network policies configured (CIS 3.2)."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Service accounts without network policy detected"
+        message_type: "security"
+        environment: "account"
+    arguments: []
+
+  - name: network_policy_configured_to_allow_acces_from_trusted_ip_addresses
+    description: "Ensures network policies only allow access from trusted IP addresses (CIS 3.1)."
+    docs:
+      show: true
+    monitorial:
+      version: 1.0.0
+      defaults:
+        schedule: "0 6 * * *"
+        severity: "warning"
+        message: "Network policy allows untrusted IP addresses"
+        message_type: "security"
+        environment: "account"
+    arguments: []
